@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'screens/check_screen.dart';
+import 'package:scamshield/screens/main_screen.dart';
 
 void main() => runApp(const ScamShieldApp());
 
@@ -12,7 +12,7 @@ class ScamShieldApp extends StatelessWidget {
     return MaterialApp(
       title: 'ScamShield',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.teal),
-      home: const CheckScreen(),
+      home: const MainScreen(),
     );
   }
 }
