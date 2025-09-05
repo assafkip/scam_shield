@@ -1,17 +1,17 @@
-# Privacy Policy
+# Privacy Policy — ScamShield
+**Last updated:** September 4, 2025
 
-Last updated: September 4, 2025
-
-ScamShield is committed to protecting your privacy. We do not collect, store, or transmit any personal information or data from your device.
-
-**Data Collection**
-
-ScamShield collects no data. All content and functionality run locally on your device. We do not use any analytics, tracking, or advertising services.
+ScamShield is an offline educational game. We do not collect, use, store, share, or sell personal data.
+- No account, login, or profile.
+- No analytics, crash reporting, or telemetry.
+- No network access required for core features.
+- No contacts, messages, photos, location, or other device data are accessed.
 
 **Permissions**
+ScamShield requests no dangerous permissions. The app functions entirely offline.
 
-ScamShield does not request any special permissions.
+**Children**
+ScamShield is general-audience educational content. It does not collect data from anyone, including children.
 
-**Contact Us**
-
-If you have any questions about this Privacy Policy, you can contact us at: [your email address]
+**Contact**
+If you have questions about this policy, you can open a GitHub issue in the project repository.

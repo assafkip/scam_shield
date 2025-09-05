@@ -1,22 +1,18 @@
-# Google Play Store Data Safety Draft
+# Google Play Data Safety — Draft Answers
 
-This document provides the answers for the Data Safety section of the Google Play Store listing.
+**Data collection:** App does not collect data.
+**Data sharing:** App does not share data with third parties.
+**Data is encrypted in transit:** Not applicable (no network transfer for user data).
+**Data deletion:** Not applicable (no collected data).
+**Optional data:** None.
+**Location / Personal info / Financial info / Health / Messages / Photos & videos / Audio / Files & docs / App activity / App info & performance / Device or other IDs:** Not collected.
 
-**Data collection and security**
+**Security practices:**
+- No sign-in; no server-side accounts.
+- No analytics or tracking SDKs.
+- Content is bundled locally and runs offline.
 
-**Does your app collect or share any of the required user data types?**
-No
-
-**Is all of the user data collected by your app encrypted in transit?**
-No data collected.
-
-**Does your app provide a way for users to request that their data be deleted?**
-No data collected.
-
-**Data types**
-
-No data collected.
-
-**Data usage and handling**
-
-No data collected.
+**Permissions disclosure:**
+- No SMS/Call Log.
+- No Contacts/Storage/Location permissions.
+- No background network requirement.
