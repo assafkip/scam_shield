@@ -9,12 +9,23 @@ enum TrainingState {
   completed,
 }
 
+enum BadgeType {
+  none,
+  bronze,
+  silver,
+  gold,
+  star,
+}
+
 class TrainingEngine {
   final List<TrainingScenario> scenarios;
   int _currentScenarioIndex = 0;
   int _currentRecallQuestionIndex = 0;
   TrainingState _state = TrainingState.scenario;
   ScenarioChoice? _lastChoice;
+
+  int _correctChoicesInScenario = 0;
+  int _correctRecallAnswersInScenario = 0;
 
   TrainingEngine({required this.scenarios});
 
@@ -31,6 +42,9 @@ class TrainingEngine {
 
     final scenario = getCurrentScenario();
     _lastChoice = scenario.choices.firstWhere((c) => c.id == choiceId);
+    if (_lastChoice!.feedback.isCorrect) {
+      _correctChoicesInScenario++;
+    }
     _state = TrainingState.feedback;
   }
 
@@ -45,9 +59,11 @@ class TrainingEngine {
       if (_currentRecallQuestionIndex < scenario.recallQuestions.length - 1) {
         _currentRecallQuestionIndex++;
       } else {
+        // Scenario completed
         if (_currentScenarioIndex < scenarios.length - 1) {
           _currentScenarioIndex++;
           _state = TrainingState.scenario;
+          _resetScenarioProgress();
         } else {
           _state = TrainingState.completed;
         }
@@ -61,7 +77,41 @@ class TrainingEngine {
 
   bool answerRecallQuestion(String answerId) {
     final question = getCurrentRecallQuestion();
-    return question.correctAnswerId == answerId;
+    final isCorrect = question.correctAnswerId == answerId;
+    if (isCorrect) {
+      _correctRecallAnswersInScenario++;
+    }
+    return isCorrect;
+  }
+
+  BadgeType getBadgeForCurrentScenario() {
+    final scenario = getCurrentScenario();
+    final totalChoices = scenario.choices.length;
+    final totalRecallQuestions = scenario.recallQuestions.length;
+
+    if (totalChoices == 0 && totalRecallQuestions == 0) {
+      return BadgeType.none;
+    }
+
+    final choicePercentage = totalChoices > 0 ? (_correctChoicesInScenario / totalChoices) : 1.0;
+    final recallPercentage = totalRecallQuestions > 0 ? (_correctRecallAnswersInScenario / totalRecallQuestions) : 1.0;
+
+    if (recallPercentage == 1.0 && choicePercentage == 1.0) {
+      return BadgeType.star;
+    } else if (choicePercentage >= 0.75) {
+      return BadgeType.gold;
+    } else if (choicePercentage >= 0.5) {
+      return BadgeType.silver;
+    } else if (choicePercentage >= 0.25) {
+      return BadgeType.bronze;
+    } else {
+      return BadgeType.none;
+    }
+  }
+
+  void _resetScenarioProgress() {
+    _correctChoicesInScenario = 0;
+    _correctRecallAnswersInScenario = 0;
   }
 }
 
