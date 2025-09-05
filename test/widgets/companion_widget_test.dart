@@ -4,7 +4,7 @@ import 'package:scamshield/widgets/companion_widget.dart';
 
 void main() {
   group('CompanionWidget', () {
-    testWidgets('displays neutral image for neutral state', (tester) async {
+    testWidgets('displays neutral state', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
@@ -12,12 +12,11 @@ void main() {
           ),
         ),
       );
-      expect(find.byType(Image), findsOneWidget);
-      // You might need a more robust way to check the image asset path
-      // For now, just checking if an Image widget is present
+      expect(find.byType(Container), findsOneWidget);
+      expect(find.text('Neutral'), findsOneWidget);
     });
 
-    testWidgets('displays happy image for happy state', (tester) async {
+    testWidgets('displays happy state', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
@@ -25,10 +24,11 @@ void main() {
           ),
         ),
       );
-      expect(find.byType(Image), findsOneWidget);
+      expect(find.byType(Container), findsOneWidget);
+      expect(find.text('Happy'), findsOneWidget);
     });
 
-    testWidgets('displays concerned image for concerned state', (tester) async {
+    testWidgets('displays concerned state', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
@@ -36,10 +36,11 @@ void main() {
           ),
         ),
       );
-      expect(find.byType(Image), findsOneWidget);
+      expect(find.byType(Container), findsOneWidget);
+      expect(find.text('Concerned'), findsOneWidget);
     });
 
-    testWidgets('displays sad image for sad state', (tester) async {
+    testWidgets('displays sad state', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
@@ -47,7 +48,8 @@ void main() {
           ),
         ),
       );
-      expect(find.byType(Image), findsOneWidget);
+      expect(find.byType(Container), findsOneWidget);
+      expect(find.text('Sad'), findsOneWidget);
     });
   });
 }

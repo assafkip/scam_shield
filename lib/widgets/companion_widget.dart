@@ -12,29 +12,43 @@ class CompanionWidget extends StatelessWidget {
 
   const CompanionWidget({super.key, required this.state});
 
-  String _getImagePath(CompanionState state) {
+  String _getLabel(CompanionState state) {
     switch (state) {
       case CompanionState.neutral:
-        return 'assets/images/companion_neutral.png';
+        return 'Neutral';
       case CompanionState.happy:
-        return 'assets/images/companion_happy.png';
+        return 'Happy';
       case CompanionState.concerned:
-        return 'assets/images/companion_concerned.png';
+        return 'Concerned';
       case CompanionState.sad:
-        return 'assets/images/companion_sad.png';
+        return 'Sad';
+    }
+  }
+
+  Color _getColor(CompanionState state) {
+    switch (state) {
+      case CompanionState.neutral:
+        return Colors.grey;
+      case CompanionState.happy:
+        return Colors.green;
+      case CompanionState.concerned:
+        return Colors.orange;
+      case CompanionState.sad:
+        return Colors.red;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      _getImagePath(state),
-      width: 100, // Example size, can be adjusted
-      height: 100, // Example size, can be adjusted
-      errorBuilder: (context, error, stackTrace) {
-        // Fallback to neutral if asset is missing
-        return Image.asset('assets/images/companion_neutral.png', width: 100, height: 100);
-      },
+    return Container(
+      width: 100,
+      height: 100,
+      color: _getColor(state),
+      alignment: Alignment.center,
+      child: Text(
+        _getLabel(state),
+        style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      ),
     );
   }
 }

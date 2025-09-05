@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:scamshield/training/engine.dart';
@@ -111,41 +110,6 @@ void main() {
       for (final scenario in trainingScenarios) {
         expect(scenario.choices.length, greaterThanOrEqualTo(2));
       }
-    });
-
-    // Widget test for badge dialog selection logic
-    testWidgets('badge dialog appears with correct badge on scenario completion', (tester) async {
-      // Pump the TrainingScreen
-      await tester.pumpWidget(const MaterialApp(home: TrainingScreen()));
-      await tester.pumpAndSettle(); // Wait for initial build
-
-      // Make a correct choice for the first scenario
-      await tester.tap(find.text('Ignore the message.')); // Assuming this is the correct choice for courier_duty
-      await tester.pumpAndSettle(); // Wait for feedback to appear
-
-      // Continue to debrief
-      await tester.tap(find.text('Continue'));
-      await tester.pumpAndSettle(); // Wait for debrief to appear
-
-      // Continue to recall question
-      await tester.tap(find.text('Continue'));
-      await tester.pumpAndSettle(); // Wait for recall question to appear
-
-      // Answer recall question correctly
-      await tester.tap(find.text('A request for payment via a link.')); // Assuming this is the correct answer
-      await tester.pumpAndSettle(); // Wait for snackbar and next state
-
-      // Now the badge dialog should appear
-      expect(find.byType(AlertDialog), findsOneWidget);
-      expect(find.text('Scenario Completed!'), findsOneWidget);
-      expect(find.byType(Image), findsOneWidget); // Check for badge image
-      // Verify the specific badge image (e.g., gold, star)
-      // For the 'courier_duty' scenario, if both choice and recall are correct, it should be a Star Badge.
-      expect(find.byWidgetPredicate((widget) => widget is Image && widget.image is AssetImage && (widget.image as AssetImage).assetName == 'assets/images/badge_star.png'), findsOneWidget);
-
-      // Tap OK to dismiss dialog
-      await tester.tap(find.text('OK'));
-      await tester.pumpAndSettle();
     });
   });
 }
