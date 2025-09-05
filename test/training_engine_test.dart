@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:scamshield/training/engine.dart';
 import 'package:scamshield/training/scenarios.dart';
-import 'package:scamshield/screens/training_screen.dart'; // Import TrainingScreen for widget test
 
 void main() {
   group('TrainingEngine', () {
