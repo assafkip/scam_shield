@@ -1,36 +1,33 @@
-# Release Checklist
+# Release Checklist — Minimal Maintenance
 
-This checklist outlines the steps to release the ScamShield app on the Google Play Store and Apple App Store.
+## Pricing & Monetization
+- Set price: $4.99 (one-time). No IAP, no subscriptions, no ads.
 
-## 1. Pre-release
+## QA
+- `flutter analyze` clean; `flutter test` ≥ 90% scenario engine coverage.
+- Manual: Android emulator + iOS simulator; large fonts; dark mode; VoiceOver/TalkBack; low-end device perf.
+- Cold start < 2s; scenario start < 1s; no jank in interactions.
 
-- [ ] **Complete QA Checklist:** Ensure all items in `docs/QA_CHECKLIST.md` are completed and passed.
-- [ ] **Generate Store Assets:** Create the app icons, feature graphic, and screenshots as listed in `docs/STORE_ASSETS.md`.
-- [ ] **Finalize Pricing:** The recommended price is **$4.99 USD** (one-time purchase).
+## Assets
+- App icon, feature graphic, splash (placeholders acceptable).
+- Screenshots: Home, Scenario, Debrief, Badge.
+- Store copy: use `/docs/store_listing.md`.
 
-## 2. Android Release (Google Play Store)
+## Compliance
+- Privacy policy: `/docs/PRIVACY.md` (host via GitHub Pages if required).
+- Data Safety: fill Play Console from `/docs/DATA_SAFETY_DRAFT.md`.
+- iOS App Store Privacy: “Data Not Collected”.
 
-- [ ] **Set up Internal Test Track:**
-    - In the Google Play Console, create a new app.
-    - Go to **Testing -> Internal testing**.
-    - Create a new release and upload the signed App Bundle (`.aab`).
-    - Add testers to the release.
-- [ ] **Build Signed App Bundle:**
-    - Follow the official Flutter documentation to create a signing key.
-    - Run `flutter build appbundle` to generate the signed App Bundle.
-- [ ] **Fill out Store Listing:** Copy the content from `docs/STORE_ASSETS.md` into the store listing.
-- [ ] **Fill out Data Safety:** Copy the answers from `docs/DATA_SAFETY_DRAFT.md`.
-- [ ] **Roll out to Production:** After successful testing, promote the release from internal testing to production.
+## Build & Sign
+- Android: `flutter build appbundle` → upload AAB to Play Console (Internal testing first).
+- iOS: `flutter build ios` (archive via Xcode for App Store Connect).
+- Keep signing keys local; do not commit secrets.
 
-## 3. iOS Release (Apple App Store)
+## Listing
+- Paste Title/Short/Full Description from `/docs/store_listing.md`.
+- Set category: Education or Simulation (whichever aligns with store guidance).
+- Add privacy policy URL (GitHub Pages) and screenshots.
 
-- [ ] **Build Signed IPA:**
-    - Follow the official Flutter documentation to configure signing in Xcode.
-    - Run `flutter build ipa` to generate the signed IPA.
-- [ ] **Create App Store Connect Record:** Create a new app in App Store Connect.
-- [ ] **Fill out App Information:** Copy the content from `docs/STORE_ASSETS.md`.
-- [ ] **Submit for Review:** Upload the build to App Store Connect and submit for review.
-
-## 4. Post-release
-
-- **Maintenance Note:** This app is released as-is and will not receive ongoing support or updates. It is designed to work offline indefinitely.
+## Post-Release
+- Pin a README note: stand-alone, offline; no ongoing updates promised.
+- Optional: enable automated price promotions via storefront tools.
