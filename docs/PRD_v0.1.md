@@ -70,4 +70,6 @@ Release Plan
 
 0.2 (Sep 9–13): Training module (5 scenarios), badges, copy.
 
+*   **Implemented in MVP 0.2:** An offline, interactive training flow with 5 scenarios (courier duty, bank KYC, gift card, crypto lure, QR quishing). Each scenario includes choices, immediate feedback, a debrief, and a short recall question to reinforce learning. The module is self-contained and requires no new permissions or network access. Unit tests for the training engine and content integrity have been added.
+
 0.3 (Sep 13–18): Polish, icons, a11y, Play listing draft, internal track.
