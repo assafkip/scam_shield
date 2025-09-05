@@ -5,14 +5,14 @@ import 'models.dart';
 class Detector {
   static final _rules = <Rule>[
     Rule(
-        id: 'URGENCY_NOW',
+        id: 'R001',
         name: 'Urgency push',
         tactic: Tactic.urgency,
-        regex: RegExp(r'(now|today|immediately|urgent)', caseSensitive: false),
+        regex: RegExp(r'(now|today|immediately|urgent|warning|within \d+ mins)', caseSensitive: false),
         explanation: 'Creates a false sense of pressure.',
         weight: 0.2),
     Rule(
-        id: 'AUTHORITY_BANK',
+        id: 'R010',
         name: 'Authority name-drop',
         tactic: Tactic.authority,
         regex: RegExp(r'(bank|fraud alert|security notice)', caseSensitive: false),
@@ -26,10 +26,10 @@ class Detector {
         explanation: 'Claims others are participating or winning.',
         weight: 0.25),
     Rule(
-        id: 'FITD_CLICK_LINK',
+        id: 'R020',
         name: 'Suspicious link',
         tactic: Tactic.footInTheDoor,
-        regex: RegExp(r'https?:\/\/[^\s]+', caseSensitive: false),
+        regex: RegExp(r'(https?:\/\/)?\S+\.\S+', caseSensitive: false),
         explanation: 'Asks for a small action (clicking a link).',
         weight: 0.1),
     Rule(
@@ -50,7 +50,11 @@ class Detector {
 
   static final _comboBonuses = <Map<String, dynamic>>[
     {
-      'ids': ['AUTHORITY_BANK', 'EMOTION_FEAR'],
+      'ids': ['R010', 'R020'],
+      'bonus': 0.15
+    },
+    {
+      'ids': ['R010', 'EMOTION_FEAR'],
       'bonus': 0.15
     }
   ];

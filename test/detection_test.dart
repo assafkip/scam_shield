@@ -12,14 +12,14 @@ void main() {
       expect(result.hits, isEmpty);
     });
 
-    test('should detect URGENCY_NOW rule', () {
+    test('should detect R001 rule', () {
       final result = Detector.analyze('This is an urgent message');
-      expect(result.hits.any((h) => h.id == 'URGENCY_NOW'), isTrue);
+      expect(result.hits.any((h) => h.id == 'R001'), isTrue);
     });
 
-    test('should detect AUTHORITY_BANK rule', () {
+    test('should detect R010 rule', () {
       final result = Detector.analyze('This is a fraud alert from your bank');
-      expect(result.hits.any((h) => h.id == 'AUTHORITY_BANK'), isTrue);
+      expect(result.hits.any((h) => h.id == 'R010'), isTrue);
     });
 
     test('should detect SOCIAL_PROOF_WIN rule', () {
@@ -27,9 +27,9 @@ void main() {
       expect(result.hits.any((h) => h.id == 'SOCIAL_PROOF_WIN'), isTrue);
     });
 
-    test('should detect FITD_CLICK_LINK rule', () {
+    test('should detect R020 rule', () {
       final result = Detector.analyze('Click this link: https://example.com');
-      expect(result.hits.any((h) => h.id == 'FITD_CLICK_LINK'), isTrue);
+      expect(result.hits.any((h) => h.id == 'R020'), isTrue);
     });
 
     test('should detect EMOTION_FEAR rule', () {
@@ -44,15 +44,15 @@ void main() {
 
     test('should apply COMBO_BANK_FEAR bonus', () {
       final result = Detector.analyze('Urgent fraud alert from your bank, your account is compromised.');
-      final authorityBankHit = result.hits.any((h) => h.id == 'AUTHORITY_BANK');
+      final authorityBankHit = result.hits.any((h) => h.id == 'R010');
       final emotionFearHit = result.hits.any((h) => h.id == 'EMOTION_FEAR');
-      final urgencyHit = result.hits.any((h) => h.id == 'URGENCY_NOW');
+      final urgencyHit = result.hits.any((h) => h.id == 'R001');
 
       expect(authorityBankHit, isTrue);
       expect(emotionFearHit, isTrue);
       expect(urgencyHit, isTrue);
 
-      // 0.3 (AUTHORITY_BANK) + 0.3 (EMOTION_FEAR) + 0.2 (URGENCY_NOW) + 0.15 (COMBO) = 0.95
+      // 0.3 (R010) + 0.3 (EMOTION_FEAR) + 0.2 (R001) + 0.15 (COMBO) = 0.95
       expect(result.riskScore, closeTo(0.95, 0.01));
       expect(result.riskLabel, 'Strong Warning');
     });
@@ -64,14 +64,14 @@ void main() {
 
     test('should return Caution label for score between 0.5 and 0.79', () {
         final result = Detector.analyze('fraud alert, your payment is overdue');
-        // 0.3 (AUTHORITY_BANK) + 0.2 (NORM_ACT_PAY) = 0.5
+        // 0.3 (R010) + 0.2 (NORM_ACT_PAY) = 0.5
         expect(result.riskScore, closeTo(0.5, 0.01));
         expect(result.riskLabel, 'Caution');
     });
 
     test('should return Strong Warning label for score >= 0.8', () {
         final result = Detector.analyze('Urgent fraud alert from your bank, your account is compromised');
-        // 0.2 (URGENCY_NOW) + 0.3 (AUTHORITY_BANK) + 0.3 (EMOTION_FEAR) + 0.15 (COMBO) = 0.95
+        // 0.2 (R001) + 0.3 (R010) + 0.3 (EMOTION_FEAR) + 0.15 (COMBO) = 0.95
         expect(result.riskScore, closeTo(0.95, 0.01));
         expect(result.riskLabel, 'Strong Warning');
     });
