@@ -6,15 +6,23 @@
 - Apple Developer account with app provisioning
 - Flutter configured for iOS development
 
+## MVP 0.6 Build Status ✅
+
+**Build Verification**: iOS build process confirmed working
+- Flutter iOS build succeeds (requires signing certificates)
+- No iOS-specific compilation errors
+- Ready for Apple Developer account setup
+
 ## Step 1: Configure iOS Project Settings
 
-### Update Bundle Identifier
-Open `ios/Runner.xcodeproj` in Xcode:
+### Update Bundle Identifier  
+Open `ios/Runner.xcworkspace` in Xcode:
 
 1. **Target Settings**: Runner → General
-2. **Bundle Identifier**: Change from `com.example.scamshield` to `com.scamshield.app`
+2. **Bundle Identifier**: Change from `com.example.scamshield` to `com.scamshield.app` 
 3. **Version**: Set to match Flutter version (pubspec.yaml)
 4. **Minimum Deployment**: iOS 12.0 (Flutter minimum)
+5. **Display Name**: "ScamShield"
 
 ### Configure Code Signing
 1. **Team**: Select your Apple Developer account

@@ -196,6 +196,10 @@ class _YouthTrainingScreenState extends State<YouthTrainingScreen> {
   Widget _buildScenario() {
     final scenario = _engine!.getCurrentScenario();
     final currentStep = _engine!.getCurrentStep();
+    
+    if (currentStep == null) {
+      return const Center(child: Text('No current step available'));
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -210,7 +214,7 @@ class _YouthTrainingScreenState extends State<YouthTrainingScreen> {
             child: const Text('Continue'),
           ),
         ] else if (currentStep.type == StepType.choice) ...[
-          ...currentStep.choices!.map((choice) {
+          ...(currentStep.choices ?? []).map((choice) {
             return ElevatedButton(
               onPressed: () => _onChoiceMade(choice.id),
               child: ChatBubble(text: choice.text, type: BubbleType.outgoing),
@@ -223,14 +227,19 @@ class _YouthTrainingScreenState extends State<YouthTrainingScreen> {
 
   Widget _buildFeedback() {
     final currentStep = _engine!.getCurrentStep();
+    
+    if (currentStep == null) {
+      return const Center(child: Text('No feedback available'));
+    }
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(currentStep.text, style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-          color: currentStep.isCorrect! ? Colors.green : Colors.red,
+          color: (currentStep.isCorrect ?? false) ? Colors.green : Colors.red,
         )),
         const SizedBox(height: 16),
-        ChatBubble(text: currentStep.explanation!, type: BubbleType.incoming),
+        ChatBubble(text: currentStep.explanation ?? 'No explanation available', type: BubbleType.incoming),
         const SizedBox(height: 32),
         ElevatedButton(
           onPressed: _onNext,
@@ -242,6 +251,11 @@ class _YouthTrainingScreenState extends State<YouthTrainingScreen> {
 
   Widget _buildDebrief() {
     final currentStep = _engine!.getCurrentStep();
+    
+    if (currentStep == null) {
+      return const Center(child: Text('No debrief available'));
+    }
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [

@@ -43,6 +43,10 @@
 -keep class io.flutter.util.** { *; }
 -keep class io.flutter.plugin.common.** { *; }
 
+# Play Core library classes (for deferred components)
+-keep class com.google.android.play.core.** { *; }
+-dontwarn com.google.android.play.core.**
+
 # Prevent obfuscation of JSON model classes if any
 # Add specific rules here if you have JSON serialization
 

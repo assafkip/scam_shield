@@ -194,6 +194,10 @@ class _TrainingScreenState extends State<TrainingScreen> {
     final scenario = _engine!.getCurrentScenario();
     // Find the current step that is a message or choice
     final currentStep = _engine!.getCurrentStep(); // Get current step from engine
+    
+    if (currentStep == null) {
+      return const Center(child: Text('No current step available'));
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -209,7 +213,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
             child: const Text('Continue'),
           ),
         ] else if (currentStep.type == StepType.choice) ...[
-          ...currentStep.choices!.map((choice) {
+          ...(currentStep.choices ?? []).map((choice) {
             return ElevatedButton(
               onPressed: () => _onChoiceMade(choice.id),
               child: ChatBubble(text: choice.text, type: BubbleType.outgoing),
@@ -222,14 +226,19 @@ class _TrainingScreenState extends State<TrainingScreen> {
 
   Widget _buildFeedback() {
     final currentStep = _engine!.getCurrentStep(); // Get current step from engine
+    
+    if (currentStep == null) {
+      return const Center(child: Text('No feedback available'));
+    }
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(currentStep.text, style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-          color: currentStep.isCorrect! ? Colors.green : Colors.red,
+          color: (currentStep.isCorrect ?? false) ? Colors.green : Colors.red,
         )),
         const SizedBox(height: 16),
-        ChatBubble(text: currentStep.explanation!, type: BubbleType.incoming),
+        ChatBubble(text: currentStep.explanation ?? 'No explanation available', type: BubbleType.incoming),
         const SizedBox(height: 32),
         ElevatedButton(
           onPressed: _onNext,
@@ -241,6 +250,11 @@ class _TrainingScreenState extends State<TrainingScreen> {
 
   Widget _buildDebrief() {
     final currentStep = _engine!.getCurrentStep(); // Get current step from engine
+    
+    if (currentStep == null) {
+      return const Center(child: Text('No debrief available'));
+    }
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [

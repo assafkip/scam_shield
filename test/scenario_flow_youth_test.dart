@@ -21,12 +21,12 @@ void main() {
       // Step 1: Initial message
       expect(engine.state, TrainingState.scenario);
       expect(engine.getCurrentScenario().id, 'y01_dating');
-      expect(engine.getCurrentStep().type, StepType.message);
+      expect(engine.getCurrentStep()?.type, StepType.message);
       
       // Move to choice step
       engine.next();
       expect(engine.state, TrainingState.scenario);
-      expect(engine.getCurrentStep().type, StepType.choice);
+      expect(engine.getCurrentStep()?.type, StepType.choice);
 
       // Step 2: Choice - suggest video call (safe choice)
       final chosenOption = engine.makeChoice('suggest_video'); // "Suggest a quick video call instead" (safe)
