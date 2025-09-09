@@ -86,7 +86,7 @@ class _SdatQuizScreenState extends State<SdatQuizScreen> {
             return RadioListTile<String>(
               title: Text(option.text),
               value: option.id,
-              groupValue: _userAnswers[question.id],
+              selected: _userAnswers[question.id] == option.id,
               onChanged: (value) {
                 if (value != null) {
                   _onOptionSelected(question.id, value);

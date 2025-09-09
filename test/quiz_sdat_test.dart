@@ -112,7 +112,7 @@ void main() {
           {
             "id": "step5",
             "type": "message",
-            "text": "I have your photos now. If you don't send me $500, I'll send them to all your followers and family!"
+            "text": "I have your photos now. If you don't send me \$500, I'll send them to all your followers and family!"
           },
           {
             "id": "step6",
@@ -290,14 +290,14 @@ void main() {
           {
             "id": "step1",
             "type": "message",
-            "text": "Congratulations! We\'re thrilled to offer you the [Dream Job] position. To finalize your onboarding, please pay a one-time administrative fee of $50 for background checks. This is standard procedure. 💼"
+            "text": "Congratulations! We\'re thrilled to offer you the [Dream Job] position. To finalize your onboarding, please pay a one-time administrative fee of \$50 for background checks. This is standard procedure. 💼"
           },
           {
             "id": "step2",
             "type": "choice",
             "text": "How do you react to the fee request?",
             "choices": [
-              {"id": "choice1", "text": "A dream job! $50 is nothing. I\'ll pay it right away.", "isSafe": false},
+              {"id": "choice1", "text": "A dream job! \$50 is nothing. I\'ll pay it right away.", "isSafe": false},
               {"id": "choice2", "text": "I\'ve never heard of paying a fee for a job. Can you explain why this is necessary?", "isSafe": true}
             ]
           },
