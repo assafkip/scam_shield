@@ -1,0 +1,66 @@
+{
+  "id": "y04_marketplace",
+  "title": "QR Code Payment Trap",
+  "context": "You're selling your old iPhone on Facebook Marketplace. A buyer contacts you saying they're very interested and can meet today.",
+  "tacticTags": ["authority", "urgency"],
+  "steps": [
+    {
+      "id": "message_1",
+      "type": "message",
+      "text": "Perfect! I'll take it for full price. I'm busy at work but can meet at lunch. I'll pay via mobile banking - just need you to scan this QR code to confirm the payment went through."
+    },
+    {
+      "id": "choice_1",
+      "type": "choice", 
+      "text": "They show up with official-looking banking documents and a QR code, saying you need to scan it to 'confirm receipt' of their payment. What do you do?",
+      "choices": [
+        {
+          "id": "scan_code",
+          "text": "Scan the QR code to confirm payment",
+          "isSafe": false
+        },
+        {
+          "id": "check_account",
+          "text": "Check your bank account first before scanning anything", 
+          "isSafe": true
+        },
+        {
+          "id": "cash_only",
+          "text": "Insist on cash payment only",
+          "isSafe": true
+        }
+      ]
+    },
+    {
+      "id": "debrief_1",
+      "type": "debrief",
+      "text": "QR code scam! That code likely links to a payment request, meaning YOU would pay THEM instead of receiving money. They use fake urgency and official-looking props to seem legitimate.",
+      "isCorrect": true,
+      "explanation": "Always verify payments in your own account before handing over items. QR codes can be used to reverse who pays whom."
+    }
+  ],
+  "quiz": {
+    "items": [
+      {
+        "id": "recall_1",
+        "question": "When selling items online, when should you hand over the item?", 
+        "options": [
+          {"id": "after_scanning", "text": "After scanning their QR code"},
+          {"id": "after_payment_confirmed", "text": "After confirming payment in your own account"},
+          {"id": "when_they_ask", "text": "When they show official documents"}
+        ],
+        "correctAnswerId": "after_payment_confirmed"
+      },
+      {
+        "id": "recall_2",
+        "question": "What can QR codes potentially do in payment scams?",
+        "options": [
+          {"id": "confirm_payment", "text": "Confirm you received payment"},
+          {"id": "reverse_payment", "text": "Make you pay them instead"},
+          {"id": "show_receipt", "text": "Show you a receipt"}
+        ],
+        "correctAnswerId": "reverse_payment"
+      }
+    ]
+  }
+}

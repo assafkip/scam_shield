@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:scamshield/screens/training_screen.dart';
+import 'package:scamshield/screens/youth_training_screen.dart';
+import 'package:scamshield/screens/sdat_quiz_screen.dart'; // Import SdatQuizScreen
 
 void main() => runApp(const ScamShieldApp());
 
@@ -38,6 +40,26 @@ class HomeScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (_) => const TrainingScreen()),
+                );
+              },
+            ),
+            const SizedBox(height: 12),
+            FilledButton.icon(
+              icon: const Icon(Icons.trending_up),
+              label: const Text('Next-Gen Scams'),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const YouthTrainingScreen()),
+                );
+              },
+            ),
+            const SizedBox(height: 12),
+            FilledButton.icon(
+              icon: const Icon(Icons.quiz),
+              label: const Text('Quick Test (10)'),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const SdatQuizScreen()),
                 );
               },
             ),
