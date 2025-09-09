@@ -2,19 +2,19 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:scamshield/training/engine.dart';
-import 'package:scamshield/content/schema.dart'; // Use schema.dart
+import 'package:scamshield/content/schema.dart';
 import 'package:scamshield/widgets/companion_widget.dart';
 import 'package:scamshield/widgets/chat_bubble.dart';
-import 'package:scamshield/content/loader.dart'; // Import ContentLoader
+import 'package:scamshield/content/loader.dart';
 
-class TrainingScreen extends StatefulWidget {
-  const TrainingScreen({super.key});
+class YouthTrainingScreen extends StatefulWidget {
+  const YouthTrainingScreen({super.key});
 
   @override
-  State<TrainingScreen> createState() => _TrainingScreenState();
+  State<YouthTrainingScreen> createState() => _YouthTrainingScreenState();
 }
 
-class _TrainingScreenState extends State<TrainingScreen> {
+class _YouthTrainingScreenState extends State<YouthTrainingScreen> {
   late Future<List<Scenario>> _scenariosFuture;
   TrainingEngine? _engine;
   CompanionState _companionState = CompanionState.neutral;
@@ -23,7 +23,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
   @override
   void initState() {
     super.initState();
-    _scenariosFuture = ContentLoader.loadScenarios();
+    _scenariosFuture = _loadYouthScenarios();
   }
 
   @override
@@ -32,8 +32,14 @@ class _TrainingScreenState extends State<TrainingScreen> {
     super.dispose();
   }
 
+  Future<List<Scenario>> _loadYouthScenarios() async {
+    final allScenarios = await ContentLoader.loadScenarios();
+    // Filter for youth scenarios (y01-y05)
+    return allScenarios.where((scenario) => scenario.id.startsWith('y0')).toList();
+  }
+
   void _startTimer() {
-    _cancelTimer(); // Cancel any existing timer
+    _cancelTimer();
     _timer = Timer(const Duration(seconds: 3), () {
       setState(() {
         _companionState = CompanionState.concerned;
@@ -46,7 +52,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
     _timer = null;
   }
 
-    void _onChoiceMade(String choiceId) {
+  void _onChoiceMade(String choiceId) {
     _cancelTimer();
     setState(() {
       final chosenOption = _engine!.makeChoice(choiceId);
@@ -61,12 +67,11 @@ class _TrainingScreenState extends State<TrainingScreen> {
       if (_engine!.state == TrainingState.scenario) {
         _companionState = CompanionState.neutral;
         _startTimer();
-        // Show badge for the *just completed* scenario
         WidgetsBinding.instance.addPostFrameCallback((_) {
           _showBadgeDialog(_engine!.getBadgeForCurrentScenario());
         });
       } else if (_engine!.state == TrainingState.completed) {
-        _companionState = CompanionState.happy; // Happy on completion
+        _companionState = CompanionState.happy;
         WidgetsBinding.instance.addPostFrameCallback((_) {
           _showBadgeDialog(_engine!.getBadgeForCurrentScenario());
         });
@@ -109,7 +114,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
         message = 'You earned a Star Badge! Perfect score!';
         break;
       case BadgeType.none:
-        return; // Should not happen
+        return;
     }
 
     showDialog(
@@ -142,7 +147,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Training'),
+        title: const Text('Next-Gen Scams'),
       ),
       body: FutureBuilder<List<Scenario>>(
         future: _scenariosFuture,
@@ -152,9 +157,8 @@ class _TrainingScreenState extends State<TrainingScreen> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error loading scenarios: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text('No scenarios available.'));
+            return const Center(child: Text('No youth scenarios available.'));
           } else {
-            // Initialize engine after scenarios are loaded
             _engine ??= TrainingEngine(scenarios: snapshot.data!);
             return Padding(
               padding: const EdgeInsets.all(16.0),
@@ -187,13 +191,11 @@ class _TrainingScreenState extends State<TrainingScreen> {
       case TrainingState.completed:
         return _buildCompleted();
     }
-
   }
 
   Widget _buildScenario() {
     final scenario = _engine!.getCurrentScenario();
-    // Find the current step that is a message or choice
-    final currentStep = _engine!.getCurrentStep(); // Get current step from engine
+    final currentStep = _engine!.getCurrentStep();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -203,7 +205,6 @@ class _TrainingScreenState extends State<TrainingScreen> {
         ChatBubble(text: currentStep.text, type: BubbleType.incoming),
         const SizedBox(height: 32),
         if (currentStep.type == StepType.message) ...[
-          // Automatically advance to next step if it's a message
           ElevatedButton(
             onPressed: _onNext,
             child: const Text('Continue'),
@@ -221,7 +222,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
   }
 
   Widget _buildFeedback() {
-    final currentStep = _engine!.getCurrentStep(); // Get current step from engine
+    final currentStep = _engine!.getCurrentStep();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -240,7 +241,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
   }
 
   Widget _buildDebrief() {
-    final currentStep = _engine!.getCurrentStep(); // Get current step from engine
+    final currentStep = _engine!.getCurrentStep();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -279,9 +280,10 @@ class _TrainingScreenState extends State<TrainingScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text('Training Completed!', style: Theme.of(context).textTheme.headlineMedium),
+        Text('Next-Gen Scams Completed!', style: Theme.of(context).textTheme.headlineMedium),
         const SizedBox(height: 16),
-        Text('You have successfully completed the training.', style: Theme.of(context).textTheme.bodyLarge),
+        Text('You\'ve completed all youth scenarios and learned to spot modern scams targeting young people.', 
+             style: Theme.of(context).textTheme.bodyLarge),
         const SizedBox(height: 32),
         ElevatedButton(
           onPressed: () => Navigator.of(context).pop(),
