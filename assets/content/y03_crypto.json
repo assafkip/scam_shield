@@ -1,0 +1,66 @@
+{
+  "id": "y03_crypto",
+  "title": "Discord Crypto FOMO",
+  "context": "You're in a Discord server about gaming when someone DMs you about an 'exclusive' crypto opportunity that's supposedly making people rich.",
+  "tacticTags": ["socialProof", "urgency"],
+  "steps": [
+    {
+      "id": "message_1",
+      "type": "message",
+      "text": "Yo! Saw you in the server. I'm making $500+ daily with this new crypto thing. My whole friend group is in on it. Only taking 10 more people before it goes public. You interested?"
+    },
+    {
+      "id": "choice_1", 
+      "type": "choice",
+      "text": "They're offering to add you to a 'private group' with screenshots of supposed earnings. They say you need to act fast. What do you do?",
+      "choices": [
+        {
+          "id": "join_group",
+          "text": "Join the group to learn more",
+          "isSafe": false
+        },
+        {
+          "id": "ask_proof",
+          "text": "Ask for verifiable proof of earnings",
+          "isSafe": true
+        },
+        {
+          "id": "research_first",
+          "text": "Say you'll research it independently first",
+          "isSafe": true
+        }
+      ]
+    },
+    {
+      "id": "debrief_1",
+      "type": "debrief", 
+      "text": "Classic pump-and-dump scam using FOMO and fake social proof! Screenshots can be easily faked, and 'limited spots' creates false urgency.",
+      "isCorrect": true,
+      "explanation": "Scammers create artificial scarcity and use fake testimonials to pressure you into quick decisions. Real opportunities don't require urgency."
+    }
+  ],
+  "quiz": {
+    "items": [
+      {
+        "id": "recall_1",
+        "question": "What should you do when someone offers you an 'exclusive' investment opportunity?",
+        "options": [
+          {"id": "act_fast", "text": "Act fast before missing out"},
+          {"id": "research_independently", "text": "Research it independently"},
+          {"id": "ask_friends", "text": "Ask the person's friends for advice"}
+        ],
+        "correctAnswerId": "research_independently"
+      },
+      {
+        "id": "recall_2",
+        "question": "Why do scammers create artificial urgency ('limited spots', 'act now')?",
+        "options": [
+          {"id": "genuinely_limited", "text": "The opportunity is genuinely limited"},
+          {"id": "prevent_research", "text": "To prevent you from researching and thinking clearly"},
+          {"id": "help_organize", "text": "To help them organize the group better"}
+        ],
+        "correctAnswerId": "prevent_research"
+      }
+    ]
+  }
+}
