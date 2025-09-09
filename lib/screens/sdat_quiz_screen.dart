@@ -87,6 +87,7 @@ class _SdatQuizScreenState extends State<SdatQuizScreen> {
               title: Text(option.text),
               value: option.id,
               selected: _userAnswers[question.id] == option.id,
+              // ignore: deprecated_member_use
               onChanged: (value) {
                 if (value != null) {
                   _onOptionSelected(question.id, value);

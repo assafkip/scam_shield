@@ -1,3 +1,11 @@
+// Helper functions for null-safe JSON parsing
+String _str(Map<String, dynamic> j, String k, [String d = '']) => (j[k] as String?) ?? d;
+bool _bool(Map<String, dynamic> j, String k, [bool d = false]) => (j[k] as bool?) ?? d;
+List<T> _list<T>(Map<String, dynamic> j, String k) {
+  final v = j[k];
+  return v is List ? v.cast<T>() : <T>[];
+}
+
 enum Tactic {
   authority,
   urgency,
@@ -25,20 +33,27 @@ class Scenario {
   });
 
   factory Scenario.fromJson(Map<String, dynamic> json) {
-    final steps = (json['steps'] as List<dynamic>)
+    final stepsList = _list<dynamic>(json, 'steps');
+    final steps = stepsList
         .map((step) => ScenarioStep.fromJson(step))
         .toList();
     _checkDuplicateIds(steps.map((s) => s.id), 'ScenarioStep');
 
-    final quiz = ScenarioQuiz.fromJson(json['quiz']);
+    final quizData = json['quiz'] as Map<String, dynamic>? ?? <String, dynamic>{};
+    final quiz = ScenarioQuiz.fromJson(quizData);
+
+    final tacticsList = _list<dynamic>(json, 'tacticTags');
+    final tacticTags = tacticsList
+        .map((tag) => Tactic.values.firstWhere(
+            (e) => e.toString().split('.').last == tag.toString(),
+            orElse: () => Tactic.emotion))
+        .toList();
 
     return Scenario(
-      id: json['id'],
-      title: json['title'],
-      context: json['context'],
-      tacticTags: (json['tacticTags'] as List<dynamic>)
-          .map((tag) => Tactic.values.firstWhere((e) => e.toString().split('.').last == tag))
-          .toList(),
+      id: _str(json, 'id'),
+      title: _str(json, 'title'),
+      context: _str(json, 'context'),
+      tacticTags: tacticTags,
       steps: steps,
       quiz: quiz,
     );
@@ -81,8 +96,9 @@ class ScenarioStep {
   });
 
   factory ScenarioStep.fromJson(Map<String, dynamic> json) {
-    final choices = json['choices'] != null
-        ? (json['choices'] as List<dynamic>)
+    final choicesList = _list<dynamic>(json, 'choices');
+    final choices = choicesList.isNotEmpty
+        ? choicesList
             .map((choice) => StepChoice.fromJson(choice))
             .toList()
         : null;
@@ -90,13 +106,18 @@ class ScenarioStep {
       _checkDuplicateIds(choices.map((c) => c.id), 'StepChoice');
     }
 
+    final typeStr = _str(json, 'type');
+    final type = StepType.values.firstWhere(
+        (e) => e.toString().split('.').last == typeStr,
+        orElse: () => StepType.message);
+
     return ScenarioStep(
-      id: json['id'],
-      type: StepType.values.firstWhere((e) => e.toString().split('.').last == json['type']),
-      text: json['text'],
+      id: _str(json, 'id'),
+      type: type,
+      text: _str(json, 'text'),
       choices: choices,
-      isCorrect: json['isCorrect'],
-      explanation: json['explanation'],
+      isCorrect: json['isCorrect'] as bool?,
+      explanation: json['explanation'] as String?,
     );
   }
 
@@ -125,9 +146,9 @@ class StepChoice {
 
   factory StepChoice.fromJson(Map<String, dynamic> json) {
     return StepChoice(
-      id: json['id'],
-      text: json['text'],
-      isSafe: json['isSafe'],
+      id: _str(json, 'id'),
+      text: _str(json, 'text'),
+      isSafe: _bool(json, 'isSafe'),
     );
   }
 
@@ -146,7 +167,8 @@ class ScenarioQuiz {
   ScenarioQuiz({required this.items});
 
   factory ScenarioQuiz.fromJson(Map<String, dynamic> json) {
-    final items = (json['items'] as List<dynamic>)
+    final itemsList = _list<dynamic>(json, 'items');
+    final items = itemsList
         .map((item) => QuizItem.fromJson(item))
         .toList();
     _checkDuplicateIds(items.map((i) => i.id), 'QuizItem');
@@ -177,16 +199,17 @@ class QuizItem {
   });
 
   factory QuizItem.fromJson(Map<String, dynamic> json) {
-    final options = (json['options'] as List<dynamic>)
+    final optionsList = _list<dynamic>(json, 'options');
+    final options = optionsList
         .map((option) => QuizOption.fromJson(option))
         .toList();
     _checkDuplicateIds(options.map((o) => o.id), 'QuizOption');
 
     return QuizItem(
-      id: json['id'],
-      question: json['question'],
+      id: _str(json, 'id'),
+      question: _str(json, 'question'),
       options: options,
-      correctAnswerId: json['correctAnswerId'],
+      correctAnswerId: _str(json, 'correctAnswerId'),
     );
   }
 
@@ -208,8 +231,8 @@ class QuizOption {
 
   factory QuizOption.fromJson(Map<String, dynamic> json) {
     return QuizOption(
-      id: json['id'],
-      text: json['text'],
+      id: _str(json, 'id'),
+      text: _str(json, 'text'),
     );
   }
 
