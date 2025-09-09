@@ -1,0 +1,66 @@
+{
+  "id": "y05_job", 
+  "title": "Job Training Fee Scam",
+  "context": "You applied for remote customer service jobs online. Someone contacts you about a position with great pay and flexible hours.",
+  "tacticTags": ["authority", "footInTheDoor"],
+  "steps": [
+    {
+      "id": "message_1",
+      "type": "message",
+      "text": "Congratulations! You've been selected for our remote customer service position - $25/hour, flexible schedule. We just need you to complete our training program first. There's a $150 training fee, but you'll earn it back in your first week."
+    },
+    {
+      "id": "choice_1",
+      "type": "choice",
+      "text": "They send professional-looking documents and say the training fee covers 'equipment and certification.' They want payment before you can start. What's your response?",
+      "choices": [
+        {
+          "id": "pay_fee",
+          "text": "Pay the training fee to secure the job",
+          "isSafe": false
+        },
+        {
+          "id": "ask_deduct",
+          "text": "Ask them to deduct it from your first paycheck instead",
+          "isSafe": true
+        },
+        {
+          "id": "research_company",
+          "text": "Research the company independently before paying",
+          "isSafe": true
+        }
+      ]
+    },
+    {
+      "id": "debrief_1",
+      "type": "debrief",
+      "text": "Employment scam using fake authority and foot-in-the-door technique! Legitimate employers never charge training fees - they pay you to train.",
+      "isCorrect": true,
+      "explanation": "Scammers pose as legitimate companies and use small initial requests (training fees) to hook victims. Real jobs pay you, not the other way around."
+    }
+  ],
+  "quiz": {
+    "items": [
+      {
+        "id": "recall_1",
+        "question": "What should you never have to pay for when starting a legitimate job?",
+        "options": [
+          {"id": "background_check", "text": "Background check fees"},
+          {"id": "training_fees", "text": "Training fees or equipment costs"},
+          {"id": "uniform_costs", "text": "Uniform costs"}
+        ],
+        "correctAnswerId": "training_fees"
+      },
+      {
+        "id": "recall_2", 
+        "question": "How can you verify if a job offer is legitimate?",
+        "options": [
+          {"id": "trust_email", "text": "Trust the professional-looking email"},
+          {"id": "research_company", "text": "Research the company independently online"},
+          {"id": "ask_recruiter", "text": "Ask the recruiter for references"}
+        ],
+        "correctAnswerId": "research_company"
+      }
+    ]
+  }
+}

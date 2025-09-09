@@ -1,0 +1,66 @@
+{
+  "id": "y01_dating",
+  "title": "Profile Verification Fee",
+  "context": "You match with someone attractive on a dating app. After chatting for a few days, they seem really interested and want to meet up.",
+  "tacticTags": ["emotion", "authority"],
+  "steps": [
+    {
+      "id": "message_1",
+      "type": "message",
+      "text": "Hey! I really like talking with you. I'd love to meet up this weekend. But first, I need to verify you're real because I've been catfished before."
+    },
+    {
+      "id": "choice_1",
+      "type": "choice",
+      "text": "They send you a link to 'verify' your profile for $5. What do you do?",
+      "choices": [
+        {
+          "id": "pay",
+          "text": "Pay the $5 to show I'm serious",
+          "isSafe": false
+        },
+        {
+          "id": "suggest_video",
+          "text": "Suggest a quick video call instead",
+          "isSafe": true
+        },
+        {
+          "id": "ignore",
+          "text": "Stop responding",
+          "isSafe": true
+        }
+      ]
+    },
+    {
+      "id": "debrief_1",
+      "type": "debrief",
+      "text": "This is a classic romance scam using emotional manipulation and fake authority. Real people don't ask for money to 'verify' themselves - that's what video calls are for!",
+      "isCorrect": true,
+      "explanation": "Scammers exploit your emotions and create urgency by claiming they need verification fees. Legitimate dating apps handle verification for free."
+    }
+  ],
+  "quiz": {
+    "items": [
+      {
+        "id": "recall_1",
+        "question": "What should you do if someone asks for a verification fee on a dating app?",
+        "options": [
+          {"id": "pay_small", "text": "Pay if it's only a small amount"},
+          {"id": "video_call", "text": "Suggest a video call instead"},
+          {"id": "ask_friends", "text": "Ask your friends for advice first"}
+        ],
+        "correctAnswerId": "video_call"
+      },
+      {
+        "id": "recall_2", 
+        "question": "Which emotion do dating scammers often exploit?",
+        "options": [
+          {"id": "anger", "text": "Anger"},
+          {"id": "loneliness", "text": "Loneliness and desire for connection"},
+          {"id": "fear", "text": "Fear of missing out"}
+        ],
+        "correctAnswerId": "loneliness"
+      }
+    ]
+  }
+}

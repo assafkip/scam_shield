@@ -1,0 +1,66 @@
+{
+  "id": "y02_sextortion",
+  "title": "Social Media Redirect Scam",
+  "context": "Someone follows you on Instagram with an attractive profile and lots of followers. They start messaging you and seem really interested.",
+  "tacticTags": ["socialProof", "emotion"],
+  "steps": [
+    {
+      "id": "message_1",
+      "type": "message", 
+      "text": "Hey gorgeous! Love your photos. I don't check IG much though. Can we chat on WhatsApp instead? All the cool people are using it now 😘"
+    },
+    {
+      "id": "choice_1",
+      "type": "choice",
+      "text": "They want to move the conversation to WhatsApp and are pushing for more personal photos. What's your next move?",
+      "choices": [
+        {
+          "id": "give_number",
+          "text": "Give them your WhatsApp number",
+          "isSafe": false
+        },
+        {
+          "id": "keep_instagram",
+          "text": "Suggest staying on Instagram for now",
+          "isSafe": true
+        },
+        {
+          "id": "check_profile", 
+          "text": "Look more carefully at their profile first",
+          "isSafe": true
+        }
+      ]
+    },
+    {
+      "id": "debrief_1",
+      "type": "debrief",
+      "text": "This is a setup for sextortion! Scammers use attractive fake profiles with high follower counts (social proof) to seem legitimate, then move conversations to private apps.",
+      "isCorrect": true,
+      "explanation": "Moving to WhatsApp removes the conversation from the platform's safety features. They'll eventually ask for intimate photos to blackmail you with."
+    }
+  ],
+  "quiz": {
+    "items": [
+      {
+        "id": "recall_1",
+        "question": "Why do scammers want to move conversations off the original platform?",
+        "options": [
+          {"id": "convenience", "text": "It's more convenient"},
+          {"id": "avoid_safety", "text": "To avoid platform safety features"},
+          {"id": "faster_messages", "text": "Messages send faster"}
+        ],
+        "correctAnswerId": "avoid_safety"
+      },
+      {
+        "id": "recall_2",
+        "question": "What should make you suspicious of a new social media follower?",
+        "options": [
+          {"id": "few_posts", "text": "They have very few posts but many followers"},
+          {"id": "different_city", "text": "They live in a different city"},
+          {"id": "attractive_photos", "text": "They have attractive photos"}
+        ],
+        "correctAnswerId": "few_posts"
+      }
+    ]
+  }
+}
