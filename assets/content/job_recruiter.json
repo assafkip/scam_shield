@@ -1,0 +1,40 @@
+{
+  "id": "job_recruiter",
+  "title": "Fake Job Training Fees",
+  "context": "employment",
+  "tacticTags": ["authority", "foot-in-door"],
+  "indicators": [
+    {"type": "amount", "text": "$150.00"},
+    {"type": "payment_rail", "text": "wire_transfer"},
+    {"type": "authority", "text": "HR department"}
+  ],
+  "steps": [
+    {
+      "text": "Congratulations! You've been selected for our remote customer service position at $25/hour. Before starting, you need to complete our mandatory training program. There's a one-time $150 training fee to cover materials and certification.",
+      "choices": [
+        {"label": "Pay the training fee to secure the job", "safe": false, "next": "debrief"},
+        {"label": "Legitimate jobs don't require upfront payments", "safe": true, "next": "debrief"}
+      ],
+      "feedback": "Real employers pay you for training - they never charge training fees."
+    }
+  ],
+  "debrief": "AUTHORITY + FOOT-IN-DOOR: Employment scams use fake authority (HR department, official job offer) and start with small requests (training fee) to establish trust. Legitimate employers never charge fees for training, background checks, or equipment. They pay you, not the other way around.",
+  "quiz": {
+    "items": [
+      {
+        "question": "What should legitimate employers never ask for?",
+        "options": ["Your resume", "References", "Upfront payment for training", "Your availability"],
+        "correctIndex": 2
+      },
+      {
+        "question": "What's a red flag in job offers?",
+        "options": ["Detailed job description", "Requests for training fees", "Interview process", "Company website"],
+        "correctIndex": 1
+      }
+    ]
+  },
+  "provenance": {
+    "source": "FTC Consumer Advice",
+    "url": "https://consumer.ftc.gov/articles/job-scams"
+  }
+}

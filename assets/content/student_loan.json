@@ -1,0 +1,40 @@
+{
+  "id": "student_loan",
+  "title": "Student Loan Forgiveness Scam",
+  "context": "education",
+  "tacticTags": ["authority", "urgency", "foot-in-door"],
+  "indicators": [
+    {"type": "amount", "text": "$299.00"},
+    {"type": "authority", "text": "Department of Education"},
+    {"type": "urgency", "text": "program ending soon"}
+  ],
+  "steps": [
+    {
+      "text": "This is the Department of Education Student Loan Forgiveness Program. You qualify for complete loan forgiveness! This program ends next month, so act fast. We just need a $299 processing fee to start your application immediately.",
+      "choices": [
+        {"label": "Pay the processing fee to get loan forgiveness", "safe": false, "next": "debrief"},
+        {"label": "Contact my loan servicer directly to verify", "safe": true, "next": "debrief"}
+      ],
+      "feedback": "Legitimate loan forgiveness programs never require upfront fees or have artificial deadlines."
+    }
+  ],
+  "debrief": "AUTHORITY + URGENCY + FOOT-IN-DOOR: Student loan scams impersonate government agencies and create false deadlines to pressure quick payment of 'processing fees.' Real loan forgiveness programs are free and don't have arbitrary deadlines. Always verify through your actual loan servicer.",
+  "quiz": {
+    "items": [
+      {
+        "question": "What do legitimate student loan forgiveness programs never require?",
+        "options": ["Proper documentation", "Upfront fees", "Income verification", "Employment history"],
+        "correctIndex": 1
+      },
+      {
+        "question": "How should you verify student loan forgiveness offers?",
+        "options": ["Trust the caller", "Pay the fee first", "Contact your loan servicer directly", "Ask friends"],
+        "correctIndex": 2
+      }
+    ]
+  },
+  "provenance": {
+    "source": "Federal Student Aid",
+    "url": "https://studentaid.gov/manage-loans/scams"
+  }
+}

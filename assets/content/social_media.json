@@ -1,0 +1,40 @@
+{
+  "id": "social_media",
+  "title": "Fake Giveaway Contest",
+  "context": "social media",
+  "tacticTags": ["social-proof", "urgency", "foot-in-door"],
+  "indicators": [
+    {"type": "prize", "text": "$1000 gift card"},
+    {"type": "urgency", "text": "24 hours only"},
+    {"type": "requirement", "text": "small processing fee"}
+  ],
+  "steps": [
+    {
+      "text": "🎉 CONGRATULATIONS! You've won our $1000 Amazon gift card giveaway! 10,000 people entered and you're our lucky winner! To claim your prize, just pay the $25 processing fee within 24 hours. Don't miss out!",
+      "choices": [
+        {"label": "Pay the processing fee to claim my prize", "safe": false, "next": "debrief"},
+        {"label": "This seems like a scam - I didn't enter any contest", "safe": true, "next": "debrief"}
+      ],
+      "feedback": "Legitimate contests never require fees to claim prizes, and you can't win contests you didn't enter."
+    }
+  ],
+  "debrief": "SOCIAL-PROOF + URGENCY + FOOT-IN-DOOR: Fake giveaway scams use large numbers ('10,000 people entered') to seem legitimate and create urgency with deadlines. The small 'processing fee' is the foot-in-the-door tactic. Real contests don't require fees to claim prizes, and you can't win contests you never entered.",
+  "quiz": {
+    "items": [
+      {
+        "question": "What's a major red flag in contest winnings?",
+        "options": ["Official letterhead", "Requests for processing fees", "Prize descriptions", "Winner notifications"],
+        "correctIndex": 1
+      },
+      {
+        "question": "Can you win a contest you never entered?",
+        "options": ["Yes, if you're lucky", "No, that's impossible", "Only small prizes", "Only online contests"],
+        "correctIndex": 1
+      }
+    ]
+  },
+  "provenance": {
+    "source": "FTC Consumer Advice",
+    "url": "https://consumer.ftc.gov/articles/prize-scams"
+  }
+}

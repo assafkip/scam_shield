@@ -1,0 +1,40 @@
+{
+  "id": "rental_scam",
+  "title": "Too-Good-To-Be-True Rental",
+  "context": "housing",
+  "tacticTags": ["urgency", "foot-in-door"],
+  "indicators": [
+    {"type": "amount", "text": "$500.00"},
+    {"type": "urgency", "text": "many interested"},
+    {"type": "payment_rail", "text": "wire_transfer"}
+  ],
+  "steps": [
+    {
+      "text": "Beautiful 2BR apartment in downtown for only $800/month! I'm traveling abroad so I can't show it in person. Many people are interested, so I need first month's rent and security deposit ($1600 total) wired today to hold it for you.",
+      "choices": [
+        {"label": "Wire the money to secure this great deal", "safe": false, "next": "debrief"},
+        {"label": "Insist on seeing the property in person first", "safe": true, "next": "debrief"}
+      ],
+      "feedback": "Never send money for a rental property you haven't seen in person or verified exists."
+    }
+  ],
+  "debrief": "URGENCY + FOOT-IN-DOOR: Rental scams use below-market prices and false urgency ('many interested') to pressure quick decisions. The 'traveling abroad' excuse avoids in-person meetings. Always see properties in person and verify ownership before sending any money.",
+  "quiz": {
+    "items": [
+      {
+        "question": "What should you always do before renting a property?",
+        "options": ["Wire deposit immediately", "See it in person", "Trust online photos", "Pay through apps"],
+        "correctIndex": 1
+      },
+      {
+        "question": "What's a red flag in rental listings?",
+        "options": ["Detailed descriptions", "Prices far below market rate", "Contact information", "Multiple photos"],
+        "correctIndex": 1
+      }
+    ]
+  },
+  "provenance": {
+    "source": "FTC Consumer Advice",
+    "url": "https://consumer.ftc.gov/articles/rental-listing-scams"
+  }
+}

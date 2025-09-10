@@ -1,0 +1,40 @@
+{
+  "id": "crypto_investment",
+  "title": "Guaranteed Crypto Returns",
+  "context": "investment",
+  "tacticTags": ["social-proof", "urgency", "emotion"],
+  "indicators": [
+    {"type": "amount", "text": "$1000.00"},
+    {"type": "guarantee", "text": "300% returns"},
+    {"type": "urgency", "text": "limited time offer"}
+  ],
+  "steps": [
+    {
+      "text": "🚀 EXCLUSIVE OPPORTUNITY! Join our VIP crypto trading group! We guarantee 300% returns in 30 days. My friend Sarah made $50,000 last month! Only 10 spots left - act now before it's too late!",
+      "choices": [
+        {"label": "This sounds amazing! Sign me up!", "safe": false, "next": "debrief"},
+        {"label": "Guaranteed returns sound too good to be true", "safe": true, "next": "debrief"}
+      ],
+      "feedback": "No legitimate investment can guarantee returns, especially not 300% in 30 days."
+    }
+  ],
+  "debrief": "SOCIAL-PROOF + URGENCY + EMOTION: Crypto scams use fake testimonials ('my friend Sarah'), create false urgency ('only 10 spots left'), and promise unrealistic returns to trigger FOMO (fear of missing out). All investments carry risk - guaranteed returns are always a scam.",
+  "quiz": {
+    "items": [
+      {
+        "question": "What's a major red flag in investment opportunities?",
+        "options": ["Detailed risk disclosures", "Guaranteed high returns", "Licensed financial advisors", "Regulatory compliance"],
+        "correctIndex": 1
+      },
+      {
+        "question": "Why do investment scammers use testimonials from 'friends'?",
+        "options": ["To provide references", "To create false social proof", "To share contact information", "To verify their identity"],
+        "correctIndex": 1
+      }
+    ]
+  },
+  "provenance": {
+    "source": "SEC Investor.gov",
+    "url": "https://www.investor.gov/protect-your-investments/fraud/types-fraud/cryptocurrency-scams"
+  }
+}
