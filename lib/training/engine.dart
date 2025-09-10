@@ -1,20 +1,8 @@
 import 'package:scamshield/content/schema.dart';
 
-enum TrainingState {
-  scenario,
-  feedback,
-  debrief,
-  recall,
-  completed,
-}
+enum TrainingState { scenario, feedback, debrief, recall, completed }
 
-enum BadgeType {
-  none,
-  bronze,
-  silver,
-  gold,
-  star,
-}
+enum BadgeType { none, bronze, silver, gold, star }
 
 class TrainingEngine {
   final List<Scenario> scenarios;
@@ -29,6 +17,8 @@ class TrainingEngine {
   TrainingEngine({required this.scenarios});
 
   TrainingState get state => _state;
+  int get currentScenarioIndex => _currentScenarioIndex;
+  int get totalScenarios => scenarios.length;
 
   Scenario getCurrentScenario() {
     if (_currentScenarioIndex >= scenarios.length) {
@@ -60,8 +50,9 @@ class TrainingEngine {
     }
 
     final chosenOption = currentStep.choices!.firstWhere(
-        (c) => c.id == choiceId,
-        orElse: () => throw RangeError('Choice ID not found: $choiceId'));
+      (c) => c.id == choiceId,
+      orElse: () => throw RangeError('Choice ID not found: $choiceId'),
+    );
 
     if (chosenOption.isSafe) {
       _correctChoicesInScenario++;
@@ -90,13 +81,15 @@ class TrainingEngine {
       // Check if there are more steps in the current scenario
       if (_currentStepIndex < currentScenario.steps.length) {
         final nextStep = currentScenario.steps[_currentStepIndex];
-        if (nextStep.type == StepType.quiz) { // Assuming quiz is a step type now
+        if (nextStep.type == StepType.quiz) {
+          // Assuming quiz is a step type now
           _state = TrainingState.recall;
           _currentRecallQuestionIndex = 0;
         } else {
           _state = TrainingState.scenario; // Move to next message/choice step
         }
-      } else { // No more steps, go to quiz or next scenario
+      } else {
+        // No more steps, go to quiz or next scenario
         _state = TrainingState.recall;
         _currentRecallQuestionIndex = 0;
       }
@@ -109,6 +102,7 @@ class TrainingEngine {
           _currentScenarioIndex++;
           _state = TrainingState.scenario;
           _currentStepIndex = 0; // Reset step index for new scenario
+          _currentRecallQuestionIndex = 0; // Reset recall question index
           _resetScenarioProgress();
         } else {
           _state = TrainingState.completed;
@@ -148,10 +142,15 @@ class TrainingEngine {
       return BadgeType.none;
     }
 
-    final choicePercentage = totalSafeChoices > 0 ? (_correctChoicesInScenario / totalSafeChoices) : 1.0;
-    final recallPercentage = totalQuizItems > 0 ? (_correctRecallAnswersInScenario / totalQuizItems) : 1.0;
+    final choicePercentage = totalSafeChoices > 0
+        ? (_correctChoicesInScenario / totalSafeChoices)
+        : 1.0;
+    final recallPercentage = totalQuizItems > 0
+        ? (_correctRecallAnswersInScenario / totalQuizItems)
+        : 1.0;
 
-    if (recallPercentage == 1.0 && choicePercentage == 1.0) { // Corrected condition
+    if (recallPercentage == 1.0 && choicePercentage == 1.0) {
+      // Corrected condition
       return BadgeType.star;
     } else if (choicePercentage >= 0.75) {
       return BadgeType.gold;

@@ -9,7 +9,8 @@ void main() {
     late TrainingEngine engine;
     late List<Scenario> loadedScenarios;
 
-    setUpAll(() async { // Use setUpAll for async initialization
+    setUpAll(() async {
+      // Use setUpAll for async initialization
       loadedScenarios = await ContentLoader.loadScenarios();
     });
 
@@ -26,7 +27,7 @@ void main() {
     });
 
     test('making a choice transitions to feedback state', () {
-      // First advance to the choice step  
+      // First advance to the choice step
       engine.next();
       final chosenOption = engine.makeChoice('suggest_video');
       expect(engine.state, TrainingState.feedback);
@@ -64,16 +65,21 @@ void main() {
       engine.makeChoice('suggest_video');
       engine.next(); // feedback -> debrief
       engine.next(); // debrief -> recall
-      // Answer the recall question to advance
+      // Answer the first recall question
       engine.answerRecallQuestion('video_call');
+      engine.next(); // recall -> next recall question
+      expect(engine.state, TrainingState.recall);
+      // Answer the second recall question
+      engine.answerRecallQuestion('loneliness');
       engine.next(); // recall -> next scenario or completed
 
-      if (loadedScenarios.length > 1) { // Use loadedScenarios
+      if (loadedScenarios.length > 1) {
+        // Use loadedScenarios
         expect(engine.state, TrainingState.scenario);
         expect(engine.getCurrentScenario().id, isNot('y01_dating'));
       } else {
-        // With single scenario and single question, should be completed
-        expect(engine.state, anyOf(TrainingState.completed, TrainingState.recall));
+        // With single scenario and multiple questions, should be completed
+        expect(engine.state, TrainingState.completed);
       }
     });
 
@@ -98,19 +104,30 @@ void main() {
       expect(isCorrect, isTrue);
 
       engine.next();
-      if (loadedScenarios.length > 1) { // Use loadedScenarios
+      expect(engine.state, TrainingState.recall);
+      expect(engine.getCurrentRecallQuestion().id, 'recall_2');
+
+      final isCorrect2 = engine.answerRecallQuestion('loneliness');
+      expect(isCorrect2, isTrue);
+
+      engine.next();
+      if (loadedScenarios.length > 1) {
+        // Use loadedScenarios
         expect(engine.state, TrainingState.scenario);
       } else {
-        // With single scenario and single question, should be completed
-        expect(engine.state, anyOf(TrainingState.completed, TrainingState.recall));
+        // With single scenario and multiple questions, should be completed
+        expect(engine.state, TrainingState.completed);
       }
     });
 
     test('content integrity: unique ids', () {
-      final scenarioIds = loadedScenarios.map((s) => s.id).toSet(); // Use loadedScenarios
+      final scenarioIds = loadedScenarios
+          .map((s) => s.id)
+          .toSet(); // Use loadedScenarios
       expect(scenarioIds.length, loadedScenarios.length); // Use loadedScenarios
 
-      for (final scenario in loadedScenarios) { // Use loadedScenarios
+      for (final scenario in loadedScenarios) {
+        // Use loadedScenarios
         // Check step IDs
         final stepIds = scenario.steps.map((step) => step.id).toSet();
         expect(stepIds.length, scenario.steps.length);
@@ -134,9 +151,15 @@ void main() {
     });
 
     test('content integrity: each scenario has >= 2 choices', () {
-      for (final scenario in loadedScenarios) { // Use loadedScenarios
-        final choiceSteps = scenario.steps.where((step) => step.type == StepType.choice).toList();
-        expect(choiceSteps.isNotEmpty, isTrue); // Ensure there's at least one choice step
+      for (final scenario in loadedScenarios) {
+        // Use loadedScenarios
+        final choiceSteps = scenario.steps
+            .where((step) => step.type == StepType.choice)
+            .toList();
+        expect(
+          choiceSteps.isNotEmpty,
+          isTrue,
+        ); // Ensure there's at least one choice step
         for (final choiceStep in choiceSteps) {
           expect(choiceStep.choices!.length, greaterThanOrEqualTo(2));
         }

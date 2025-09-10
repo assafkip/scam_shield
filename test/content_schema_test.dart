@@ -55,7 +55,10 @@ void main() {
       expect(scenario.id, 'test_scenario');
       expect(scenario.title, 'Test Scenario');
       expect(scenario.context, 'This is a test context.');
-      expect(scenario.tacticTags, containsAll([Tactic.authority, Tactic.emotion]));
+      expect(
+        scenario.tacticTags,
+        containsAll([Tactic.authority, Tactic.emotion]),
+      );
       expect(scenario.steps.length, 3);
       expect(scenario.steps[0].type, StepType.message);
       expect(scenario.steps[1].type, StepType.choice);

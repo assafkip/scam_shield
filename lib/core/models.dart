@@ -1,4 +1,3 @@
-
 enum Tactic {
   urgency,
   authority,

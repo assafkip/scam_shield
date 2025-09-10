@@ -376,19 +376,24 @@ void main() {
       for (final item in sdatQuiz.quizItems) {
         userAnswers[item.id] = item.correctAnswerId;
       }
-      expect(sdatQuiz.scoreQuiz(userAnswers), 5); // Updated to match actual count
+      expect(
+        sdatQuiz.scoreQuiz(userAnswers),
+        5,
+      ); // Updated to match actual count
 
       // Answer all incorrectly
       userAnswers.clear();
       for (final item in sdatQuiz.quizItems) {
-        userAnswers[item.id] = 'wrong_answer'; // Assuming 'wrong_answer' is never a correct ID
+        userAnswers[item.id] =
+            'wrong_answer'; // Assuming 'wrong_answer' is never a correct ID
       }
       expect(sdatQuiz.scoreQuiz(userAnswers), 0);
 
       // Answer half correctly
       userAnswers.clear();
       for (int i = 0; i < sdatQuiz.quizItems.length / 2; i++) {
-        userAnswers[sdatQuiz.quizItems[i].id] = sdatQuiz.quizItems[i].correctAnswerId;
+        userAnswers[sdatQuiz.quizItems[i].id] =
+            sdatQuiz.quizItems[i].correctAnswerId;
       }
       expect(sdatQuiz.scoreQuiz(userAnswers), 5);
     });
@@ -396,7 +401,10 @@ void main() {
     test('provides correct summary for score', () {
       final sdatQuiz = SdatQuiz(allScenarios: mockScenarios);
       expect(sdatQuiz.getSummary(10), "Excellent! You're a scam-spotting pro!");
-      expect(sdatQuiz.getSummary(7), "Good job! You're getting better at spotting scams.");
+      expect(
+        sdatQuiz.getSummary(7),
+        "Good job! You're getting better at spotting scams.",
+      );
       expect(sdatQuiz.getSummary(5), "Keep practicing! Scams can be tricky.");
     });
   });
