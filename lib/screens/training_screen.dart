@@ -46,11 +46,13 @@ class _TrainingScreenState extends State<TrainingScreen> {
     _timer = null;
   }
 
-    void _onChoiceMade(String choiceId) {
+  void _onChoiceMade(String choiceId) {
     _cancelTimer();
     setState(() {
       final chosenOption = _engine!.makeChoice(choiceId);
-      _companionState = chosenOption.isSafe ? CompanionState.happy : CompanionState.sad;
+      _companionState = chosenOption.isSafe
+          ? CompanionState.happy
+          : CompanionState.sad;
     });
   }
 
@@ -141,36 +143,103 @@ class _TrainingScreenState extends State<TrainingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Training'),
-      ),
+      appBar: AppBar(title: const Text('Training')),
       body: FutureBuilder<List<Scenario>>(
         future: _scenariosFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text('Error loading scenarios: ${snapshot.error}'));
+            return Center(
+              child: Text('Error loading scenarios: ${snapshot.error}'),
+            );
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Center(child: Text('No scenarios available.'));
           } else {
             // Initialize engine after scenarios are loaded
             _engine ??= TrainingEngine(scenarios: snapshot.data!);
-            return Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  CompanionWidget(state: _companionState),
-                  const SizedBox(height: 16),
-                  Expanded(
-                    child: _buildContent(),
-                  ),
-                ],
+            return Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.teal.shade50,
+                    Colors.white,
+                  ],
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    // Progress indicator
+                    _buildProgressIndicator(),
+                    const SizedBox(height: 16),
+                    // Companion widget
+                    CompanionWidget(state: _companionState),
+                    const SizedBox(height: 16),
+                    // Main content
+                    Expanded(child: _buildContent()),
+                  ],
+                ),
               ),
             );
           }
         },
       ),
+    );
+  }
+
+  Widget _buildProgressIndicator() {
+    if (_engine == null) return const SizedBox.shrink();
+    
+    final totalScenarios = _engine!.totalScenarios;
+    final currentScenario = _engine!.currentScenarioIndex + 1;
+    final progress = currentScenario / totalScenarios;
+    
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Scenario $currentScenario of $totalScenarios',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w600,
+                color: Colors.teal.shade700,
+              ),
+            ),
+            Text(
+              '${(progress * 100).round()}%',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w600,
+                color: Colors.teal.shade700,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Container(
+          height: 8,
+          decoration: BoxDecoration(
+            color: Colors.grey.shade200,
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: FractionallySizedBox(
+            alignment: Alignment.centerLeft,
+            widthFactor: progress,
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.teal.shade400, Colors.teal.shade600],
+                ),
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -187,14 +256,14 @@ class _TrainingScreenState extends State<TrainingScreen> {
       case TrainingState.completed:
         return _buildCompleted();
     }
-
   }
 
   Widget _buildScenario() {
     final scenario = _engine!.getCurrentScenario();
     // Find the current step that is a message or choice
-    final currentStep = _engine!.getCurrentStep(); // Get current step from engine
-    
+    final currentStep = _engine!
+        .getCurrentStep(); // Get current step from engine
+
     if (currentStep == null) {
       return const Center(child: Text('No current step available'));
     }
@@ -208,10 +277,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
         const SizedBox(height: 32),
         if (currentStep.type == StepType.message) ...[
           // Automatically advance to next step if it's a message
-          ElevatedButton(
-            onPressed: _onNext,
-            child: const Text('Continue'),
-          ),
+          ElevatedButton(onPressed: _onNext, child: const Text('Continue')),
         ] else if (currentStep.type == StepType.choice) ...[
           ...(currentStep.choices ?? []).map((choice) {
             return ElevatedButton(
@@ -225,36 +291,41 @@ class _TrainingScreenState extends State<TrainingScreen> {
   }
 
   Widget _buildFeedback() {
-    final currentStep = _engine!.getCurrentStep(); // Get current step from engine
-    
+    final currentStep = _engine!
+        .getCurrentStep(); // Get current step from engine
+
     if (currentStep == null) {
       return const Center(child: Text('No feedback available'));
     }
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(currentStep.text, style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-          color: (currentStep.isCorrect ?? false) ? Colors.green : Colors.red,
-        )),
-        const SizedBox(height: 16),
-        ChatBubble(text: currentStep.explanation ?? 'No explanation available', type: BubbleType.incoming),
-        const SizedBox(height: 32),
-        ElevatedButton(
-          onPressed: _onNext,
-          child: const Text('Continue'),
+        Text(
+          currentStep.text,
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+            color: (currentStep.isCorrect ?? false) ? Colors.green : Colors.red,
+          ),
         ),
+        const SizedBox(height: 16),
+        ChatBubble(
+          text: currentStep.explanation ?? 'No explanation available',
+          type: BubbleType.incoming,
+        ),
+        const SizedBox(height: 32),
+        ElevatedButton(onPressed: _onNext, child: const Text('Continue')),
       ],
     );
   }
 
   Widget _buildDebrief() {
-    final currentStep = _engine!.getCurrentStep(); // Get current step from engine
-    
+    final currentStep = _engine!
+        .getCurrentStep(); // Get current step from engine
+
     if (currentStep == null) {
       return const Center(child: Text('No debrief available'));
     }
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -262,10 +333,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
         const SizedBox(height: 16),
         ChatBubble(text: currentStep.text, type: BubbleType.highlight),
         const SizedBox(height: 32),
-        ElevatedButton(
-          onPressed: _onNext,
-          child: const Text('Continue'),
-        ),
+        ElevatedButton(onPressed: _onNext, child: const Text('Continue')),
       ],
     );
   }
@@ -275,7 +343,10 @@ class _TrainingScreenState extends State<TrainingScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text('Recall Question', style: Theme.of(context).textTheme.headlineMedium),
+        Text(
+          'Recall Question',
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
         const SizedBox(height: 16),
         ChatBubble(text: question.question, type: BubbleType.incoming),
         const SizedBox(height: 32),
@@ -293,9 +364,15 @@ class _TrainingScreenState extends State<TrainingScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text('Training Completed!', style: Theme.of(context).textTheme.headlineMedium),
+        Text(
+          'Training Completed!',
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
         const SizedBox(height: 16),
-        Text('You have successfully completed the training.', style: Theme.of(context).textTheme.bodyLarge),
+        Text(
+          'You have successfully completed the training.',
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
         const SizedBox(height: 32),
         ElevatedButton(
           onPressed: () => Navigator.of(context).pop(),

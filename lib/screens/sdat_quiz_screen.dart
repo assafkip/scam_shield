@@ -48,9 +48,7 @@ class _SdatQuizScreenState extends State<SdatQuizScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Quick Test (10)'),
-      ),
+      appBar: AppBar(title: const Text('Quick Test (10)')),
       body: FutureBuilder<SdatQuiz>(
         future: _sdatQuizFuture,
         builder: (context, snapshot) {
@@ -80,7 +78,10 @@ class _SdatQuizScreenState extends State<SdatQuizScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(question.question, style: Theme.of(context).textTheme.titleLarge),
+          Text(
+            question.question,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
           const SizedBox(height: 16),
           ...question.options.map((option) {
             return RadioListTile<String>(
@@ -100,9 +101,11 @@ class _SdatQuizScreenState extends State<SdatQuizScreen> {
             onPressed: _userAnswers.containsKey(question.id)
                 ? () => _nextQuestion(sdatQuiz)
                 : null,
-            child: Text(_currentQuestionIndex < sdatQuiz.quizItems.length - 1
-                ? 'Next Question'
-                : 'Submit Quiz'),
+            child: Text(
+              _currentQuestionIndex < sdatQuiz.quizItems.length - 1
+                  ? 'Next Question'
+                  : 'Submit Quiz',
+            ),
           ),
         ],
       ),
@@ -115,12 +118,20 @@ class _SdatQuizScreenState extends State<SdatQuizScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text('Quiz Completed!', style: Theme.of(context).textTheme.headlineMedium),
+          Text(
+            'Quiz Completed!',
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
           const SizedBox(height: 16),
-          Text('Your score: $_score / ${sdatQuiz.quizItems.length}',
-              style: Theme.of(context).textTheme.titleLarge),
+          Text(
+            'Your score: $_score / ${sdatQuiz.quizItems.length}',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
           const SizedBox(height: 8),
-          Text(sdatQuiz.getSummary(_score), style: Theme.of(context).textTheme.bodyLarge),
+          Text(
+            sdatQuiz.getSummary(_score),
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
           const SizedBox(height: 32),
           ElevatedButton(
             onPressed: () {

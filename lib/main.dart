@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:scamshield/screens/training_screen.dart';
 import 'package:scamshield/screens/youth_training_screen.dart';
@@ -31,8 +30,10 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Learn to spot scams — through play.',
-              style: Theme.of(context).textTheme.titleLarge),
+            Text(
+              'Learn to spot scams — through play.',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
             const SizedBox(height: 16),
             FilledButton.icon(
               icon: const Icon(Icons.play_circle_fill),
@@ -49,7 +50,9 @@ class HomeScreen extends StatelessWidget {
               label: const Text('Next-Gen Scams'),
               onPressed: () {
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const YouthTrainingScreen()),
+                  MaterialPageRoute(
+                    builder: (_) => const YouthTrainingScreen(),
+                  ),
                 );
               },
             ),
@@ -74,4 +77,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-

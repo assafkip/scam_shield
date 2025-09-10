@@ -35,7 +35,9 @@ class _YouthTrainingScreenState extends State<YouthTrainingScreen> {
   Future<List<Scenario>> _loadYouthScenarios() async {
     final allScenarios = await ContentLoader.loadScenarios();
     // Filter for youth scenarios (y01-y05)
-    return allScenarios.where((scenario) => scenario.id.startsWith('y0')).toList();
+    return allScenarios
+        .where((scenario) => scenario.id.startsWith('y0'))
+        .toList();
   }
 
   void _startTimer() {
@@ -56,7 +58,9 @@ class _YouthTrainingScreenState extends State<YouthTrainingScreen> {
     _cancelTimer();
     setState(() {
       final chosenOption = _engine!.makeChoice(choiceId);
-      _companionState = chosenOption.isSafe ? CompanionState.happy : CompanionState.sad;
+      _companionState = chosenOption.isSafe
+          ? CompanionState.happy
+          : CompanionState.sad;
     });
   }
 
@@ -146,16 +150,16 @@ class _YouthTrainingScreenState extends State<YouthTrainingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Next-Gen Scams'),
-      ),
+      appBar: AppBar(title: const Text('Next-Gen Scams')),
       body: FutureBuilder<List<Scenario>>(
         future: _scenariosFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text('Error loading scenarios: ${snapshot.error}'));
+            return Center(
+              child: Text('Error loading scenarios: ${snapshot.error}'),
+            );
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Center(child: Text('No youth scenarios available.'));
           } else {
@@ -166,9 +170,7 @@ class _YouthTrainingScreenState extends State<YouthTrainingScreen> {
                 children: [
                   CompanionWidget(state: _companionState),
                   const SizedBox(height: 16),
-                  Expanded(
-                    child: _buildContent(),
-                  ),
+                  Expanded(child: _buildContent()),
                 ],
               ),
             );
@@ -196,7 +198,7 @@ class _YouthTrainingScreenState extends State<YouthTrainingScreen> {
   Widget _buildScenario() {
     final scenario = _engine!.getCurrentScenario();
     final currentStep = _engine!.getCurrentStep();
-    
+
     if (currentStep == null) {
       return const Center(child: Text('No current step available'));
     }
@@ -209,10 +211,7 @@ class _YouthTrainingScreenState extends State<YouthTrainingScreen> {
         ChatBubble(text: currentStep.text, type: BubbleType.incoming),
         const SizedBox(height: 32),
         if (currentStep.type == StepType.message) ...[
-          ElevatedButton(
-            onPressed: _onNext,
-            child: const Text('Continue'),
-          ),
+          ElevatedButton(onPressed: _onNext, child: const Text('Continue')),
         ] else if (currentStep.type == StepType.choice) ...[
           ...(currentStep.choices ?? []).map((choice) {
             return ElevatedButton(
@@ -227,35 +226,38 @@ class _YouthTrainingScreenState extends State<YouthTrainingScreen> {
 
   Widget _buildFeedback() {
     final currentStep = _engine!.getCurrentStep();
-    
+
     if (currentStep == null) {
       return const Center(child: Text('No feedback available'));
     }
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(currentStep.text, style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-          color: (currentStep.isCorrect ?? false) ? Colors.green : Colors.red,
-        )),
-        const SizedBox(height: 16),
-        ChatBubble(text: currentStep.explanation ?? 'No explanation available', type: BubbleType.incoming),
-        const SizedBox(height: 32),
-        ElevatedButton(
-          onPressed: _onNext,
-          child: const Text('Continue'),
+        Text(
+          currentStep.text,
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+            color: (currentStep.isCorrect ?? false) ? Colors.green : Colors.red,
+          ),
         ),
+        const SizedBox(height: 16),
+        ChatBubble(
+          text: currentStep.explanation ?? 'No explanation available',
+          type: BubbleType.incoming,
+        ),
+        const SizedBox(height: 32),
+        ElevatedButton(onPressed: _onNext, child: const Text('Continue')),
       ],
     );
   }
 
   Widget _buildDebrief() {
     final currentStep = _engine!.getCurrentStep();
-    
+
     if (currentStep == null) {
       return const Center(child: Text('No debrief available'));
     }
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -263,10 +265,7 @@ class _YouthTrainingScreenState extends State<YouthTrainingScreen> {
         const SizedBox(height: 16),
         ChatBubble(text: currentStep.text, type: BubbleType.highlight),
         const SizedBox(height: 32),
-        ElevatedButton(
-          onPressed: _onNext,
-          child: const Text('Continue'),
-        ),
+        ElevatedButton(onPressed: _onNext, child: const Text('Continue')),
       ],
     );
   }
@@ -276,7 +275,10 @@ class _YouthTrainingScreenState extends State<YouthTrainingScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text('Recall Question', style: Theme.of(context).textTheme.headlineMedium),
+        Text(
+          'Recall Question',
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
         const SizedBox(height: 16),
         ChatBubble(text: question.question, type: BubbleType.incoming),
         const SizedBox(height: 32),
@@ -294,10 +296,15 @@ class _YouthTrainingScreenState extends State<YouthTrainingScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text('Next-Gen Scams Completed!', style: Theme.of(context).textTheme.headlineMedium),
+        Text(
+          'Next-Gen Scams Completed!',
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
         const SizedBox(height: 16),
-        Text('You\'ve completed all youth scenarios and learned to spot modern scams targeting young people.', 
-             style: Theme.of(context).textTheme.bodyLarge),
+        Text(
+          'You\'ve completed all youth scenarios and learned to spot modern scams targeting young people.',
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
         const SizedBox(height: 32),
         ElevatedButton(
           onPressed: () => Navigator.of(context).pop(),

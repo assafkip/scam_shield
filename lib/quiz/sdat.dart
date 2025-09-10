@@ -7,19 +7,23 @@ class SdatQuiz {
   final List<QuizItem> _currentQuizItems = [];
 
   SdatQuiz({required List<Scenario> allScenarios})
-      : _scamItems = _extractQuizItems(allScenarios, isScam: true),
-        _notScamItems = _extractQuizItems(allScenarios, isScam: false) {
+    : _scamItems = _extractQuizItems(allScenarios, isScam: true),
+      _notScamItems = _extractQuizItems(allScenarios, isScam: false) {
     _generateQuiz();
   }
 
-  static List<QuizItem> _extractQuizItems(List<Scenario> scenarios, {required bool isScam}) {
+  static List<QuizItem> _extractQuizItems(
+    List<Scenario> scenarios, {
+    required bool isScam,
+  }) {
     final List<QuizItem> items = [];
     for (final scenario in scenarios) {
       // For simplicity, let's assume scenarios with tacticTags are 'scam' scenarios
       // and scenarios without tacticTags (or a specific tag) are 'not-scam'
       // This needs to be refined based on actual content design.
       // For now, we'll use the first quiz item from each scenario.
-      if (scenario.tacticTags.isNotEmpty == isScam && scenario.quiz.items.isNotEmpty) {
+      if (scenario.tacticTags.isNotEmpty == isScam &&
+          scenario.quiz.items.isNotEmpty) {
         items.add(scenario.quiz.items.first);
       }
     }

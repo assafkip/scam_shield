@@ -1,4 +1,3 @@
-
 import 'package:scamshield/content/schema.dart';
 import 'package:scamshield/content/loader.dart';
 

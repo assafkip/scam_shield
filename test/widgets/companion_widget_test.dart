@@ -7,9 +7,7 @@ void main() {
     testWidgets('displays neutral state', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: CompanionWidget(state: CompanionState.neutral),
-          ),
+          home: Scaffold(body: CompanionWidget(state: CompanionState.neutral)),
         ),
       );
       expect(find.byType(Container), findsOneWidget);
@@ -19,9 +17,7 @@ void main() {
     testWidgets('displays happy state', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: CompanionWidget(state: CompanionState.happy),
-          ),
+          home: Scaffold(body: CompanionWidget(state: CompanionState.happy)),
         ),
       );
       expect(find.byType(Container), findsOneWidget);
@@ -43,9 +39,7 @@ void main() {
     testWidgets('displays sad state', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: CompanionWidget(state: CompanionState.sad),
-          ),
+          home: Scaffold(body: CompanionWidget(state: CompanionState.sad)),
         ),
       );
       expect(find.byType(Container), findsOneWidget);
