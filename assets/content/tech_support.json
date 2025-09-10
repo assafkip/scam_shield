@@ -1,0 +1,40 @@
+{
+  "id": "tech_support",
+  "title": "Fake Tech Support Call",
+  "context": "tech support",
+  "tacticTags": ["authority", "urgency", "emotion"],
+  "indicators": [
+    {"type": "amount", "text": "$299.99"},
+    {"type": "payment_rail", "text": "gift_card"},
+    {"type": "authority", "text": "Microsoft support"}
+  ],
+  "steps": [
+    {
+      "text": "Hello, this is Microsoft Support. We've detected suspicious activity on your computer. Your system has been compromised and we need to fix it immediately to prevent data loss.",
+      "choices": [
+        {"label": "Let me check with Microsoft directly", "safe": true, "next": "debrief"},
+        {"label": "Please help me fix it right away", "safe": false, "next": "debrief"}
+      ],
+      "feedback": "Real tech companies don't make unsolicited calls about computer problems."
+    }
+  ],
+  "debrief": "AUTHORITY + URGENCY + EMOTION: Scammers impersonate trusted companies like Microsoft and create false urgency about computer problems. They exploit fear of data loss to pressure victims into immediate action. Real tech support never calls you unsolicited.",
+  "quiz": {
+    "items": [
+      {
+        "question": "What should you do if someone calls claiming to be from Microsoft about your computer?",
+        "options": ["Give them remote access immediately", "Hang up and contact Microsoft directly", "Pay for their security service", "Download their software"],
+        "correctIndex": 1
+      },
+      {
+        "question": "Why do tech support scammers create urgency?",
+        "options": ["To help you faster", "To prevent you from thinking clearly", "Because problems are always urgent", "To save time"],
+        "correctIndex": 1
+      }
+    ]
+  },
+  "provenance": {
+    "source": "FTC Consumer Sentinel",
+    "url": "https://consumer.ftc.gov/articles/tech-support-scams"
+  }
+}

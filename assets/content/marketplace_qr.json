@@ -1,0 +1,40 @@
+{
+  "id": "marketplace_qr",
+  "title": "QR Code Payment Scam",
+  "context": "marketplace",
+  "tacticTags": ["authority", "urgency"],
+  "indicators": [
+    {"type": "payment_method", "text": "QR code"},
+    {"type": "urgency", "text": "need item today"},
+    {"type": "authority", "text": "secure payment system"}
+  ],
+  "steps": [
+    {
+      "text": "Hi! I want to buy your item for the full asking price. I'll pay through our company's secure payment system. Just scan this QR code to confirm you received the payment. I need the item today for a gift!",
+      "choices": [
+        {"label": "Scan the QR code to confirm payment", "safe": false, "next": "debrief"},
+        {"label": "I only accept payment through the marketplace platform", "safe": true, "next": "debrief"}
+      ],
+      "feedback": "QR codes can be used to authorize payments FROM your account, not TO your account."
+    }
+  ],
+  "debrief": "AUTHORITY + URGENCY: QR code scams trick sellers into thinking they're confirming receipt of payment, when they're actually authorizing a payment from their own account. The 'secure payment system' authority claim and urgency ('need today') pressure victims into acting quickly without thinking.",
+  "quiz": {
+    "items": [
+      {
+        "question": "What's the risk of scanning unknown QR codes for payments?",
+        "options": ["Slower processing", "You might pay them instead of receiving payment", "Higher fees", "Privacy concerns"],
+        "correctIndex": 1
+      },
+      {
+        "question": "What's the safest way to receive payment when selling online?",
+        "options": ["QR codes from buyers", "Wire transfers", "Platform's built-in payment system", "Gift cards"],
+        "correctIndex": 2
+      }
+    ]
+  },
+  "provenance": {
+    "source": "Better Business Bureau",
+    "url": "https://www.bbb.org/article/scams/22749-scam-alert-qr-code-scams-are-on-the-rise"
+  }
+}

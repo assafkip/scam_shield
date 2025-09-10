@@ -1,0 +1,40 @@
+{
+  "id": "irs_imposter",
+  "title": "IRS Tax Threat Call",
+  "context": "government",
+  "tacticTags": ["authority", "urgency", "emotion"],
+  "indicators": [
+    {"type": "amount", "text": "$2500.00"},
+    {"type": "payment_rail", "text": "gift_card"},
+    {"type": "authority", "text": "IRS agent"}
+  ],
+  "steps": [
+    {
+      "text": "This is Agent Johnson from the IRS. You owe $2,500 in back taxes and penalties. If you don't pay immediately with gift cards, we'll issue a warrant for your arrest within the hour. This is your final notice.",
+      "choices": [
+        {"label": "Buy gift cards immediately to avoid arrest", "safe": false, "next": "debrief"},
+        {"label": "Hang up and contact the IRS directly", "safe": true, "next": "debrief"}
+      ],
+      "feedback": "The IRS never demands immediate payment with gift cards or threatens arrest over the phone."
+    }
+  ],
+  "debrief": "AUTHORITY + URGENCY + EMOTION: IRS imposter scams use fake government authority and threaten arrest to create fear and urgency. The real IRS never calls demanding immediate payment with gift cards, threatens arrest over the phone, or requires payment without proper documentation.",
+  "quiz": {
+    "items": [
+      {
+        "question": "How does the real IRS typically contact taxpayers?",
+        "options": ["Threatening phone calls", "Text messages", "Mail correspondence", "Social media"],
+        "correctIndex": 2
+      },
+      {
+        "question": "What payment method does the IRS never accept?",
+        "options": ["Check", "Credit card", "Gift cards", "Bank transfer"],
+        "correctIndex": 2
+      }
+    ]
+  },
+  "provenance": {
+    "source": "IRS.gov",
+    "url": "https://www.irs.gov/newsroom/phone-scams-continue-to-be-serious-threat"
+  }
+}

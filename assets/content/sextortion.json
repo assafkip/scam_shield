@@ -1,0 +1,40 @@
+{
+  "id": "sextortion",
+  "title": "Social Media Blackmail",
+  "context": "social media",
+  "tacticTags": ["emotion", "urgency", "social-proof"],
+  "indicators": [
+    {"type": "amount", "text": "$500.00"},
+    {"type": "payment_rail", "text": "bitcoin"},
+    {"type": "threat", "text": "expose photos"}
+  ],
+  "steps": [
+    {
+      "text": "I have compromising photos of you from your social media. If you don't send me $500 in Bitcoin within 24 hours, I'll send them to all your contacts and post them online. Don't try to contact police - I'm anonymous.",
+      "choices": [
+        {"label": "Pay the money to make this go away", "safe": false, "next": "debrief"},
+        {"label": "Block, report, and contact authorities", "safe": true, "next": "debrief"}
+      ],
+      "feedback": "Paying extortionists never makes them go away - it proves you'll pay and encourages more demands."
+    }
+  ],
+  "debrief": "EMOTION + URGENCY: Sextortion scams use fear and shame to pressure victims into paying quickly. They often have no actual compromising material. Even if they do, paying doesn't guarantee they'll stop - it usually leads to more demands.",
+  "quiz": {
+    "items": [
+      {
+        "question": "What should you do if someone tries to blackmail you online?",
+        "options": ["Pay them immediately", "Negotiate a lower amount", "Block, report, and contact authorities", "Delete your social media"],
+        "correctIndex": 2
+      },
+      {
+        "question": "Why do sextortion scammers demand payment quickly?",
+        "options": ["They need money urgently", "To prevent you from thinking clearly", "Bitcoin prices change", "They're being nice"],
+        "correctIndex": 1
+      }
+    ]
+  },
+  "provenance": {
+    "source": "FBI IC3",
+    "url": "https://www.ic3.gov/Media/Y2021/PSA210902"
+  }
+}

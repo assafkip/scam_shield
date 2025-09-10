@@ -1,0 +1,40 @@
+{
+  "id": "bank_imposter",
+  "title": "Fake Bank Security Alert",
+  "context": "banking",
+  "tacticTags": ["authority", "urgency", "emotion"],
+  "indicators": [
+    {"type": "authority", "text": "bank security"},
+    {"type": "urgency", "text": "account compromised"},
+    {"type": "request", "text": "verify PIN"}
+  ],
+  "steps": [
+    {
+      "text": "SECURITY ALERT: This is First National Bank. We've detected suspicious activity on your account. Someone tried to withdraw $500. To protect your account, please verify your PIN and online banking password immediately.",
+      "choices": [
+        {"label": "Provide my PIN and password to secure my account", "safe": false, "next": "debrief"},
+        {"label": "Hang up and call my bank's official number", "safe": true, "next": "debrief"}
+      ],
+      "feedback": "Banks never ask for PINs, passwords, or account numbers over the phone."
+    }
+  ],
+  "debrief": "AUTHORITY + URGENCY + EMOTION: Bank imposter scams use fake security alerts to create fear about account compromise. They impersonate trusted institutions and request sensitive information that real banks never ask for over the phone. Always hang up and call your bank's official number to verify.",
+  "quiz": {
+    "items": [
+      {
+        "question": "What information do real banks never ask for over the phone?",
+        "options": ["Your name", "Your PIN or password", "Your address", "Your phone number"],
+        "correctIndex": 1
+      },
+      {
+        "question": "What should you do if someone calls about suspicious bank activity?",
+        "options": ["Give them your information", "Hang up and call your bank directly", "Ask for their employee ID", "Transfer money immediately"],
+        "correctIndex": 1
+      }
+    ]
+  },
+  "provenance": {
+    "source": "American Bankers Association",
+    "url": "https://www.aba.com/advocacy/community-programs/consumer-resources/protect-yourself-from-fraud"
+  }
+}

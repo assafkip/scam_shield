@@ -1,0 +1,40 @@
+{
+  "id": "y07_romance_platformhop",
+  "title": "\"Let's Switch to Telegram\"",
+  "context": "dating",
+  "tacticTags": ["emotion", "platform-hop"],
+  "indicators": [
+    {"type": "amount", "text": "$5000.00"},
+    {"type": "payment_rail", "text": "gift_card"},
+    {"type": "platform_hop", "text": "switch to telegram"}
+  ],
+  "steps": [
+    {
+      "text": "Hi! I saw your profile and thought you seemed really interesting. I'd love to get to know you better. Can we move our conversation to Telegram? It's more private and secure.",
+      "choices": [
+        {"label": "Sure, let's move to Telegram", "safe": false, "next": "debrief"},
+        {"label": "I prefer to keep chatting here for now", "safe": true, "next": "debrief"}
+      ],
+      "feedback": "Rushing off-platform avoids safety checks and moderation."
+    }
+  ],
+  "debrief": "EMOTION + PLATFORM-HOP: Romance scammers quickly try to move conversations to platforms like Telegram or WhatsApp to avoid dating app safety features and moderation. This makes it harder to report them and removes built-in protections.",
+  "quiz": {
+    "items": [
+      {
+        "question": "Why do scammers push to move conversations to Telegram/WhatsApp?",
+        "options": ["Better emojis", "Fewer safety checks", "It's more romantic", "Cheaper data"],
+        "correctIndex": 1
+      },
+      {
+        "question": "What's a red flag in early dating app conversations?",
+        "options": ["Asking about hobbies", "Requesting to move off-platform immediately", "Sharing photos", "Asking about location"],
+        "correctIndex": 1
+      }
+    ]
+  },
+  "provenance": {
+    "source": "consumer.ftc.gov",
+    "url": "https://consumer.ftc.gov/articles/romance-scam-warning"
+  }
+}

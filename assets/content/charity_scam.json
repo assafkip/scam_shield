@@ -1,0 +1,40 @@
+{
+  "id": "charity_scam",
+  "title": "Fake Disaster Relief",
+  "context": "charity",
+  "tacticTags": ["emotion", "urgency", "social-proof"],
+  "indicators": [
+    {"type": "amount", "text": "$50.00"},
+    {"type": "urgency", "text": "emergency relief"},
+    {"type": "emotion", "text": "help victims"}
+  ],
+  "steps": [
+    {
+      "text": "URGENT: Hurricane victims need your help NOW! We're the Emergency Relief Foundation collecting donations. Every dollar goes directly to families who lost everything. Can you donate $50 to save lives? Time is running out!",
+      "choices": [
+        {"label": "Donate immediately to help victims", "safe": false, "next": "debrief"},
+        {"label": "Research the charity before donating", "safe": true, "next": "debrief"}
+      ],
+      "feedback": "Always verify charities through official databases before donating, especially during disasters."
+    }
+  ],
+  "debrief": "EMOTION + URGENCY + SOCIAL-PROOF: Charity scams exploit natural disasters and human compassion. They create false urgency ('time is running out') and emotional appeals ('save lives') to pressure quick donations. Always verify charities through sites like Charity Navigator or GuideStar before giving.",
+  "quiz": {
+    "items": [
+      {
+        "question": "How should you verify a charity before donating?",
+        "options": ["Trust their website", "Check official charity databases", "Ask friends on social media", "Look at their photos"],
+        "correctIndex": 1
+      },
+      {
+        "question": "What's a red flag in charity solicitations?",
+        "options": ["Detailed program information", "High-pressure tactics", "Tax-exempt status", "Annual reports"],
+        "correctIndex": 1
+      }
+    ]
+  },
+  "provenance": {
+    "source": "FTC Consumer Advice",
+    "url": "https://consumer.ftc.gov/articles/donating-charity"
+  }
+}
