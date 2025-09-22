@@ -1,0 +1,70 @@
+[build]
+  publish = "dist-web"
+  command = "echo 'Static site - no build command needed. Export should be committed to dist-web/'"
+
+# SPA fallback - all routes serve index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Security and cache headers for all contexts
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+
+# Long-term caching for static assets in production
+[context.production]
+  [[context.production.headers]]
+    for = "/resources/*"
+    [context.production.headers.values]
+      Cache-Control = "public, max-age=31536000, immutable"
+
+  [[context.production.headers]]
+    for = "*.js"
+    [context.production.headers.values]
+      Cache-Control = "public, max-age=31536000, immutable"
+
+  [[context.production.headers]]
+    for = "*.css"
+    [context.production.headers.values]
+      Cache-Control = "public, max-age=31536000, immutable"
+
+  [[context.production.headers]]
+    for = "*.wasm"
+    [context.production.headers.values]
+      Cache-Control = "public, max-age=31536000, immutable"
+
+  [[context.production.headers]]
+    for = "/index.html"
+    [context.production.headers.values]
+      Cache-Control = "no-store, no-cache, must-revalidate"
+
+  [[context.production.headers]]
+    for = "/config/*"
+    [context.production.headers.values]
+      Cache-Control = "no-store, no-cache, must-revalidate"
+
+# Deploy previews - short cache for easier testing
+[context.deploy-preview]
+  [[context.deploy-preview.headers]]
+    for = "/*"
+    [context.deploy-preview.headers.values]
+      Cache-Control = "no-store, no-cache, must-revalidate"
+
+# Branch deploys - same as deploy previews
+[context.branch-deploy]
+  [[context.branch-deploy.headers]]
+    for = "/*"
+    [context.branch-deploy.headers.values]
+      Cache-Control = "no-store, no-cache, must-revalidate"
+
+# Content Security Policy for GDevelop runtime
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; object-src 'none'; media-src 'self' data: blob:; worker-src 'self' blob:; child-src 'self' blob:; frame-ancestors 'self';"

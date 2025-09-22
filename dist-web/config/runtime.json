@@ -1,0 +1,23 @@
+{
+  "useUnifiedEngine": true,
+  "whitelistScenarioIds": [
+    "sample_001",
+    "y01_dating",
+    "ad_001",
+    "y06_tech_support",
+    "y07_romance_platformhop"
+  ],
+  "pressureMeterEnabled": true,
+  "implicitTrustSystem": true,
+  "uiTheme": "whatsapp",
+  "adaptiveDifficulty": false,
+  "platformSkins": false,
+  "meaningfulTimers": false,
+  "realisticConsequences": false,
+  "progressiveCurriculum": false,
+  "recoveryTraining": false,
+  "qualityEnforcement": false,
+  "debugMode": false,
+  "buildTimestamp": "PLACEHOLDER_TIMESTAMP",
+  "deployContext": "PLACEHOLDER_CONTEXT"
+}
