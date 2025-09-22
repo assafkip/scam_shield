@@ -1,0 +1,66 @@
+{
+  "name": "ScamShield",
+  "short_name": "ScamShield",
+  "description": "Learn to spot scams with interactive training - PRD-02 v2.1",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "scope": "./",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["education", "security", "training"],
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "./screenshot-mobile.png",
+      "sizes": "375x812",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Trust & Pressure meters in action"
+    },
+    {
+      "src": "./screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Interactive scam detection training"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Quick Demo",
+      "short_name": "Demo",
+      "description": "30-second scam detection demo",
+      "url": "./?demo=quick",
+      "icons": [
+        {
+          "src": "./icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "handle_links": "preferred",
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  }
+}
