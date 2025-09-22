@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScamShield - Learn to spot scams with interactive training</title>
+    <meta name="description" content="PRD-02 v2.1: Trust-from-Choices & Pressure Meter implementation">
+
+    <!-- PWA & Offline Support -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#2563eb">
+
+    <!-- Accessibility -->
+    <meta name="color-scheme" content="light dark">
+
+    <!-- Performance -->
+    <link rel="preload" href="./app.js" as="script">
+    <link rel="preload" href="./styles.css" as="style">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./styles.css">
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('SW registered:', reg.scope))
+                    .catch(err => console.log('SW registration failed:', err));
+            });
+        }
+    </script>
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only">Skip to main content</a>
+
+    <!-- App Container -->
+    <div id="app">
+        <!-- Loading State -->
+        <div class="loading-container" aria-live="polite">
+            <div class="loading-spinner" aria-hidden="true"></div>
+            <p>Loading ScamShield...</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content" class="hidden">
+        <!-- Demo Gate (PRD-02 v2.1) -->
+        <section id="demo-gate" class="demo-gate">
+            <header class="demo-header">
+                <h1>Welcome to ScamShield</h1>
+                <p class="subtitle">Learn to spot scams in under 30 seconds</p>
+            </header>
+
+            <div class="demo-preview">
+                <h2>Quick Demo Preview</h2>
+                <ul class="feature-list">
+                    <li>✨ Spot urgent pressure tactics</li>
+                    <li>📊 See trust level feedback</li>
+                    <li>🚩 Learn red flag patterns</li>
+                </ul>
+            </div>
+
+            <div class="demo-actions">
+                <button id="start-demo" class="btn-primary">
+                    🚀 Start Quick Demo
+                </button>
+                <button id="skip-demo" class="btn-secondary">
+                    Skip Demo
+                </button>
+            </div>
+
+            <div class="demo-info">
+                <p class="privacy-note">
+                    <strong>Privacy:</strong> Everything runs offline. No data collection.
+                </p>
+                <p class="duration-note">
+                    <strong>Duration:</strong> Less than 30 seconds to complete.
+                </p>
+            </div>
+        </section>
+
+        <!-- Trust & Pressure Interface (PRD-02 v2.1) -->
+        <section id="game-interface" class="game-interface hidden">
+            <!-- Trust Bar -->
+            <div class="trust-container">
+                <h2 id="trust-label">Trust Level</h2>
+                <div class="trust-bar" role="meter" aria-labelledby="trust-label" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                    <div class="trust-target" aria-label="Target range: 40-60%"></div>
+                    <div class="trust-current" aria-label="Current trust: 50%"></div>
+                </div>
+                <div class="trust-feedback" aria-live="polite"></div>
+            </div>
+
+            <!-- Pressure Meter -->
+            <div class="pressure-container">
+                <h2 id="pressure-label">Pressure Level</h2>
+                <div class="pressure-meter" role="meter" aria-labelledby="pressure-label" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                    <div class="pressure-zones">
+                        <div class="zone safe">Safe</div>
+                        <div class="zone caution">Caution</div>
+                        <div class="zone danger">Danger</div>
+                        <div class="zone critical">Critical</div>
+                    </div>
+                    <div class="pressure-level" aria-label="Current pressure: 0%"></div>
+                </div>
+                <div class="pressure-feedback" aria-live="assertive"></div>
+            </div>
+
+            <!-- Conversation Area -->
+            <div class="conversation-area">
+                <div id="conversation-content" class="conversation-content" role="log" aria-live="polite">
+                    <!-- Dynamic content populated by JavaScript -->
+                </div>
+
+                <div class="choices-container">
+                    <!-- Dynamic choices populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Debrief Section -->
+        <section id="debrief" class="debrief hidden">
+            <header class="debrief-header">
+                <h2>Scenario Complete</h2>
+            </header>
+
+            <div class="debrief-content">
+                <!-- Trust Analysis -->
+                <div class="analysis-section">
+                    <h3>Trust Analysis</h3>
+                    <div id="trust-analysis" class="analysis-content">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Pressure Resistance -->
+                <div class="analysis-section">
+                    <h3>Pressure Resistance</h3>
+                    <div id="pressure-analysis" class="analysis-content">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Red Flag Education -->
+                <div class="red-flag-section">
+                    <h3>Primary Red Flag</h3>
+                    <div id="red-flag-primary" class="red-flag-content">
+                        <!-- Populated by JavaScript -->
+                    </div>
+
+                    <h4>Additional Red Flags:</h4>
+                    <ul id="red-flag-additional" class="red-flag-list">
+                        <!-- Populated by JavaScript -->
+                    </ul>
+                </div>
+
+                <!-- Teaching Points -->
+                <div class="teaching-section">
+                    <h3>Key Learning Points</h3>
+                    <ul id="teaching-points" class="teaching-list">
+                        <!-- Populated by JavaScript -->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="debrief-actions">
+                <button id="replay-scenario" class="btn-secondary">
+                    🔄 Replay Scenario
+                </button>
+                <button id="next-scenario" class="btn-primary">
+                    ➡️ Try Next Scenario
+                </button>
+                <button id="return-menu" class="btn-secondary">
+                    🏠 Return to Menu
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Offline Banner -->
+    <div id="offline-banner" class="offline-banner hidden" role="banner">
+        <div class="offline-content">
+            <strong>You're offline</strong>
+            <span>ScamShield works fully offline. No internet required.</span>
+        </div>
+    </div>
+
+    <!-- Live Regions for Screen Readers -->
+    <div aria-live="polite" aria-atomic="true" class="sr-only" id="live-region-polite"></div>
+    <div aria-live="assertive" aria-atomic="true" class="sr-only" id="live-region-assertive"></div>
+
+    <!-- Application JavaScript -->
+    <script src="./app.js"></script>
+</body>
+</html>
