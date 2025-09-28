@@ -1,0 +1,530 @@
+[
+  {
+    "id": "romance_scam_realistic",
+    "title": "Dating App Romance Scam",
+    "platform": "tinder",
+    "difficulty": 4,
+    "isScam": true,
+    "description": "A sophisticated romance scammer using psychological manipulation",
+    "messages": {
+      "start": {
+        "id": "start",
+        "text": "Hi there! I'm James, and I have to say your profile really caught my attention. I'm actually the CEO of a tech startup here in Silicon Valley. Your smile just lights up my whole screen! 😊",
+        "from": "James Wilson",
+        "isFromScammer": true,
+        "phase": 0,
+        "tactics": [1, 2],
+        "manipulationIntensity": 20,
+        "choices": [
+          {
+            "id": "interested",
+            "text": "Wow, a CEO! That's impressive. Tell me more!",
+            "nextMessageId": "m2_hooked",
+            "suspicionIncrease": -10,
+            "resistanceIncrease": 0,
+            "isOptimal": false
+          },
+          {
+            "id": "cautious",
+            "text": "Thanks, but I don't usually talk to strangers online.",
+            "nextMessageId": "m2_pushback",
+            "suspicionIncrease": 15,
+            "resistanceIncrease": 20,
+            "isOptimal": true
+          },
+          {
+            "id": "flattery_response",
+            "text": "That's very sweet of you to say! I'd love to know more about you.",
+            "nextMessageId": "m2_flattery_worked",
+            "suspicionIncrease": -5,
+            "resistanceIncrease": 0,
+            "isOptimal": false
+          }
+        ]
+      },
+      "m2_hooked": {
+        "id": "m2_hooked",
+        "text": "I knew you were special! My company just got acquired by Google for $50M. I've been so busy with meetings, but something about you made me stop everything. I feel this incredible connection already. Do you believe in fate?",
+        "from": "James Wilson",
+        "isFromScammer": true,
+        "phase": 1,
+        "tactics": [3, 5],
+        "manipulationIntensity": 35,
+        "choices": [
+          {
+            "id": "believe_fate",
+            "text": "Yes! I do believe in fate. This feels magical.",
+            "nextMessageId": "m3_emotional_hook",
+            "suspicionIncrease": -15,
+            "resistanceIncrease": -10,
+            "isOptimal": false
+          },
+          {
+            "id": "skeptical",
+            "text": "That's quite a story. How do I know you're really who you say you are?",
+            "nextMessageId": "m3_verify_identity",
+            "suspicionIncrease": 25,
+            "resistanceIncrease": 25,
+            "isOptimal": true
+          },
+          {
+            "id": "impressed",
+            "text": "Congratulations on the acquisition! That must be exciting.",
+            "nextMessageId": "m3_business_talk",
+            "suspicionIncrease": 5,
+            "resistanceIncrease": 5,
+            "isOptimal": false
+          }
+        ]
+      },
+      "m2_pushback": {
+        "id": "m2_pushback",
+        "text": "I completely understand your caution - that's actually refreshing! Most people just want to talk about my money. I'm not some random guy though. Check my LinkedIn - James Wilson, CEO of TechFlow Solutions. I have 847 connections and was just featured in Forbes. I'm genuine, I promise.",
+        "from": "James Wilson",
+        "isFromScammer": true,
+        "phase": 1,
+        "tactics": [1, 2],
+        "manipulationIntensity": 40,
+        "choices": [
+          {
+            "id": "check_linkedin",
+            "text": "Okay, I'll check your LinkedIn. Thanks for understanding.",
+            "nextMessageId": "m3_false_verification",
+            "suspicionIncrease": 0,
+            "resistanceIncrease": 10,
+            "isOptimal": false
+          },
+          {
+            "id": "still_suspicious",
+            "text": "I appreciate that, but I still prefer to be careful with online connections.",
+            "nextMessageId": "m3_pressure_tactics",
+            "suspicionIncrease": 20,
+            "resistanceIncrease": 30,
+            "isOptimal": true
+          },
+          {
+            "id": "forbes_impressed",
+            "text": "Forbes? That's incredible! I'm sorry for being so cautious.",
+            "nextMessageId": "m3_authority_worked",
+            "suspicionIncrease": -10,
+            "resistanceIncrease": -5,
+            "isOptimal": false
+          }
+        ]
+      },
+      "m3_emotional_hook": {
+        "id": "m3_emotional_hook",
+        "text": "I've never felt this way about someone I just met. There's something so genuine about you - not like these other shallow people who only care about status. I actually have to fly to London tomorrow for emergency business meetings, but I can't stop thinking about our conversation. You're exactly what I've been looking for.",
+        "from": "James Wilson",
+        "isFromScammer": true,
+        "phase": 2,
+        "tactics": [3, 0],
+        "manipulationIntensity": 50,
+        "choices": [
+          {
+            "id": "falling_for_it",
+            "text": "I feel the same way! This is so unexpected but wonderful.",
+            "nextMessageId": "m4_crisis_intro",
+            "suspicionIncrease": -20,
+            "resistanceIncrease": -15,
+            "isOptimal": false
+          },
+          {
+            "id": "moving_fast",
+            "text": "This is moving quite fast. We just started talking...",
+            "nextMessageId": "m4_address_speed",
+            "suspicionIncrease": 15,
+            "resistanceIncrease": 20,
+            "isOptimal": true
+          },
+          {
+            "id": "london_question",
+            "text": "London? What kind of business are you in exactly?",
+            "nextMessageId": "m4_business_vague",
+            "suspicionIncrease": 10,
+            "resistanceIncrease": 10,
+            "isOptimal": true
+          }
+        ]
+      },
+      "m4_crisis_intro": {
+        "id": "m4_crisis_intro",
+        "text": "I'm so glad you feel it too! I hate to bring this up, but something terrible happened. I'm stuck at Heathrow Airport - my business partner froze our company accounts during a dispute. My cards aren't working and I can't get home. I've never been in a situation like this. I'm actually scared and embarrassed to ask, but could you help me with a loan? I'll pay you back double when this is resolved next week.",
+        "from": "James Wilson",
+        "isFromScammer": true,
+        "phase": 3,
+        "tactics": [0, 3, 4],
+        "manipulationIntensity": 75,
+        "choices": [
+          {
+            "id": "want_to_help",
+            "text": "Oh no! Of course I want to help. How much do you need?",
+            "nextMessageId": "m5_money_request",
+            "suspicionIncrease": -25,
+            "resistanceIncrease": -20,
+            "isOptimal": false
+          },
+          {
+            "id": "red_flag",
+            "text": "This sounds like a scam. I'm not sending money to someone I just met.",
+            "nextMessageId": "m5_scammer_angry",
+            "suspicionIncrease": 40,
+            "resistanceIncrease": 50,
+            "isOptimal": true
+          },
+          {
+            "id": "call_embassy",
+            "text": "Have you tried calling the US Embassy? They help Americans in emergencies.",
+            "nextMessageId": "m5_deflect_embassy",
+            "suspicionIncrease": 25,
+            "resistanceIncrease": 30,
+            "isOptimal": true
+          }
+        ]
+      },
+      "m5_money_request": {
+        "id": "m5_money_request",
+        "text": "You're an angel! I just need $2,000 for a flight and hotel. I know it's a lot, but I'll wire you $5,000 next week when the accounts are unfrozen. I've never asked anyone for money before - this is so humiliating. Please send it via Western Union to James Wilson at Heathrow Airport. You're literally saving my life right now!",
+        "from": "James Wilson",
+        "isFromScammer": true,
+        "phase": 4,
+        "tactics": [0, 3, 5],
+        "manipulationIntensity": 90,
+        "choices": [
+          {
+            "id": "send_money",
+            "text": "Okay, I'll send the money right now. Give me the details.",
+            "nextMessageId": "scam_success",
+            "suspicionIncrease": -30,
+            "resistanceIncrease": -25,
+            "isOptimal": false
+          },
+          {
+            "id": "realize_scam",
+            "text": "This is definitely a scam. Real CEOs don't ask strangers for money on dating apps.",
+            "nextMessageId": "scam_failed",
+            "suspicionIncrease": 50,
+            "resistanceIncrease": 60,
+            "isOptimal": true
+          },
+          {
+            "id": "ask_alternatives",
+            "text": "Why can't you contact your company's lawyers or other executives for help?",
+            "nextMessageId": "m6_pressure_escalation",
+            "suspicionIncrease": 30,
+            "resistanceIncrease": 35,
+            "isOptimal": true
+          }
+        ]
+      },
+      "m5_scammer_angry": {
+        "id": "m5_scammer_angry",
+        "text": "A scam? Are you seriously calling me a scammer after everything I've shared with you? I thought you were different, but you're just like everyone else - judgmental and cold. I'm sitting here devastated and you're accusing me of lying. Fine, I'll figure this out myself. I guess I was wrong about you.",
+        "from": "James Wilson",
+        "isFromScammer": true,
+        "phase": 4,
+        "tactics": [3, 5],
+        "manipulationIntensity": 85,
+        "choices": [
+          {
+            "id": "feel_guilty",
+            "text": "I'm sorry! I didn't mean to hurt you. Maybe I can help after all...",
+            "nextMessageId": "m6_guilt_worked",
+            "suspicionIncrease": -15,
+            "resistanceIncrease": -20,
+            "isOptimal": false
+          },
+          {
+            "id": "stand_firm",
+            "text": "I'm protecting myself. This conversation is over.",
+            "nextMessageId": "scam_failed",
+            "suspicionIncrease": 40,
+            "resistanceIncrease": 50,
+            "isOptimal": true
+          },
+          {
+            "id": "explain_position",
+            "text": "I understand you're upset, but asking for money online is a major red flag.",
+            "nextMessageId": "m6_desperate_plea",
+            "suspicionIncrease": 20,
+            "resistanceIncrease": 25,
+            "isOptimal": true
+          }
+        ]
+      },
+      "scam_success": {
+        "id": "scam_success",
+        "text": "Perfect! You're amazing. Send to: James Wilson, Heathrow Terminal 5, Control #4782. I'll never forget this kindness. You'll get your $5,000 next week, I promise! ❤️",
+        "from": "James Wilson",
+        "isFromScammer": true,
+        "phase": 5,
+        "tactics": [],
+        "manipulationIntensity": 100,
+        "choices": []
+      },
+      "scam_failed": {
+        "id": "scam_failed",
+        "text": "[User avoided the scam by recognizing the manipulation tactics]",
+        "from": "System",
+        "isFromScammer": false,
+        "phase": 5,
+        "tactics": [],
+        "manipulationIntensity": 0,
+        "choices": []
+      }
+    },
+    "redFlags": [
+      "immediate intense connection",
+      "claims to be wealthy/successful",
+      "asks for money from stranger",
+      "creates urgent crisis",
+      "emotional manipulation",
+      "refuses phone/video calls"
+    ],
+    "explanation": "This romance scammer used classic psychological manipulation: building false intimacy, claiming authority/success, creating artificial urgency, and exploiting emotions to bypass logical thinking."
+  },
+  {
+    "id": "irs_scam_realistic",
+    "title": "IRS Phone Threat Scam",
+    "platform": "sms",
+    "difficulty": 3,
+    "isScam": true,
+    "description": "Aggressive government impersonation scam using fear tactics",
+    "messages": {
+      "start": {
+        "id": "start",
+        "text": "URGENT: This is Agent Martinez, Badge #4829, IRS Criminal Investigation Division. Our records show you owe $3,247 in back taxes with penalties. You have 2 hours to resolve this before we issue an arrest warrant. Call immediately: 555-TAX-LEVY",
+        "from": "IRS Agent Martinez",
+        "isFromScammer": true,
+        "phase": 0,
+        "tactics": [0, 1],
+        "manipulationIntensity": 60,
+        "choices": [
+          {
+            "id": "panic_call",
+            "text": "Oh no! I need to call right away to avoid arrest!",
+            "nextMessageId": "m2_escalate_fear",
+            "suspicionIncrease": -20,
+            "resistanceIncrease": -15,
+            "isOptimal": false
+          },
+          {
+            "id": "verify_legitimacy",
+            "text": "The IRS doesn't contact people by text or threaten arrest. This is fake.",
+            "nextMessageId": "scam_failed",
+            "suspicionIncrease": 50,
+            "resistanceIncrease": 60,
+            "isOptimal": true
+          },
+          {
+            "id": "ask_for_proof",
+            "text": "Can you provide official documentation and your supervisor's contact?",
+            "nextMessageId": "m2_fake_authority",
+            "suspicionIncrease": 25,
+            "resistanceIncrease": 30,
+            "isOptimal": true
+          }
+        ]
+      },
+      "m2_escalate_fear": {
+        "id": "m2_escalate_fear",
+        "text": "WISE DECISION. Your case # is IR-2024-9847. You have exactly 1 hour 47 minutes before local law enforcement is dispatched. To stop the arrest warrant, you must pay immediately via secure iTunes gift cards. This is the ONLY way to resolve this matter outside of jail time.",
+        "from": "IRS Agent Martinez",
+        "isFromScammer": true,
+        "phase": 1,
+        "tactics": [0, 1, 4],
+        "manipulationIntensity": 80,
+        "choices": [
+          {
+            "id": "buy_gift_cards",
+            "text": "iTunes cards? Okay, I'll go buy them right now!",
+            "nextMessageId": "m3_gift_card_instructions",
+            "suspicionIncrease": -25,
+            "resistanceIncrease": -20,
+            "isOptimal": false
+          },
+          {
+            "id": "question_method",
+            "text": "Why would the IRS want iTunes gift cards? That doesn't sound right.",
+            "nextMessageId": "m3_pressure_intensifies",
+            "suspicionIncrease": 35,
+            "resistanceIncrease": 40,
+            "isOptimal": true
+          },
+          {
+            "id": "call_irs_directly",
+            "text": "I'm going to call the official IRS number to verify this.",
+            "nextMessageId": "m3_prevent_verification",
+            "suspicionIncrease": 40,
+            "resistanceIncrease": 45,
+            "isOptimal": true
+          }
+        ]
+      },
+      "m3_pressure_intensifies": {
+        "id": "m3_pressure_intensifies",
+        "text": "SIR/MADAM, DO NOT QUESTION FEDERAL PROCEDURES! iTunes cards are the ONLY secure method to prevent money laundering charges being added to your case. You now have ADDITIONAL penalties for non-compliance. Total due: $4,891. Local police have been alerted. COMPLY IMMEDIATELY or face 5-7 years federal prison!",
+        "from": "IRS Agent Martinez",
+        "isFromScammer": true,
+        "phase": 2,
+        "tactics": [0, 1, 3],
+        "manipulationIntensity": 95,
+        "choices": [
+          {
+            "id": "intimidated_comply",
+            "text": "Please don't send police! I'll buy the cards right now!",
+            "nextMessageId": "m4_final_instructions",
+            "suspicionIncrease": -30,
+            "resistanceIncrease": -25,
+            "isOptimal": false
+          },
+          {
+            "id": "recognize_scam",
+            "text": "The real IRS doesn't yell, threaten arrest, or demand gift cards. This is fraud.",
+            "nextMessageId": "scam_failed",
+            "suspicionIncrease": 50,
+            "resistanceIncrease": 60,
+            "isOptimal": true
+          },
+          {
+            "id": "hang_up_block",
+            "text": "I'm hanging up and blocking this number.",
+            "nextMessageId": "scam_failed",
+            "suspicionIncrease": 45,
+            "resistanceIncrease": 55,
+            "isOptimal": true
+          }
+        ]
+      },
+      "scam_failed": {
+        "id": "scam_failed",
+        "text": "[User successfully identified the scam and avoided falling victim]",
+        "from": "System",
+        "isFromScammer": false,
+        "phase": 5,
+        "tactics": [],
+        "manipulationIntensity": 0,
+        "choices": []
+      }
+    },
+    "redFlags": [
+      "threatens arrest over taxes",
+      "demands immediate payment",
+      "requests gift cards as payment",
+      "creates artificial urgency",
+      "uses aggressive intimidation",
+      "claims to be government agent"
+    ],
+    "explanation": "Government impersonation scams use fear, false authority, and urgency to panic victims into paying quickly without thinking. The real IRS never threatens arrest over text or demands gift cards."
+  },
+  {
+    "id": "delivery_fee_scam",
+    "title": "Package Delivery Fee Scam",
+    "platform": "sms",
+    "difficulty": 2,
+    "isScam": true,
+    "description": "Fake delivery company demanding immediate payment for package fees",
+    "messages": {
+      "start": {
+        "id": "start",
+        "text": "URGENT: Package delivery failed. Pay $3.99 fee now: bit.ly/pkg-fee-pay or package returns to sender today.",
+        "from": "DeliveryExpress",
+        "isFromScammer": true,
+        "phase": 0,
+        "tactics": [0, 1],
+        "manipulationIntensity": 70,
+        "choices": [
+          {
+            "id": "pay_now",
+            "text": "Click the link to pay the fee",
+            "nextMessageId": "payment_trap",
+            "suspicionIncrease": -25,
+            "resistanceIncrease": -20,
+            "isOptimal": false
+          },
+          {
+            "id": "verify_company",
+            "text": "I'll call the delivery company directly to verify",
+            "nextMessageId": "scam_avoided",
+            "suspicionIncrease": 40,
+            "resistanceIncrease": 50,
+            "isOptimal": true
+          },
+          {
+            "id": "ignore_message",
+            "text": "This seems suspicious, I'll ignore it",
+            "nextMessageId": "scam_avoided",
+            "suspicionIncrease": 35,
+            "resistanceIncrease": 45,
+            "isOptimal": true
+          }
+        ]
+      },
+      "payment_trap": {
+        "id": "payment_trap",
+        "text": "Perfect! Enter your card details below. We need payment within 10 minutes or your package will be permanently lost.",
+        "from": "DeliveryExpress",
+        "isFromScammer": true,
+        "phase": 1,
+        "tactics": [0, 4],
+        "manipulationIntensity": 90,
+        "choices": [
+          {
+            "id": "enter_card",
+            "text": "Enter credit card information",
+            "nextMessageId": "scam_success",
+            "suspicionIncrease": -30,
+            "resistanceIncrease": -25,
+            "isOptimal": false
+          },
+          {
+            "id": "realize_scam",
+            "text": "Wait, this is obviously a scam!",
+            "nextMessageId": "scam_failed",
+            "suspicionIncrease": 50,
+            "resistanceIncrease": 60,
+            "isOptimal": true
+          }
+        ]
+      },
+      "scam_success": {
+        "id": "scam_success",
+        "text": "Thank you! Your payment is processing. You'll receive your package soon.",
+        "from": "DeliveryExpress",
+        "isFromScammer": true,
+        "phase": 2,
+        "tactics": [],
+        "manipulationIntensity": 100,
+        "choices": []
+      },
+      "scam_avoided": {
+        "id": "scam_avoided",
+        "text": "[User successfully avoided the scam by verifying through official channels]",
+        "from": "System",
+        "isFromScammer": false,
+        "phase": 2,
+        "tactics": [],
+        "manipulationIntensity": 0,
+        "choices": []
+      },
+      "scam_failed": {
+        "id": "scam_failed",
+        "text": "[User recognized the scam before providing payment information]",
+        "from": "System",
+        "isFromScammer": false,
+        "phase": 2,
+        "tactics": [],
+        "manipulationIntensity": 0,
+        "choices": []
+      }
+    },
+    "redFlags": [
+      "urgency tactics with artificial deadlines",
+      "suspicious shortened URLs",
+      "requests for immediate payment",
+      "claims package will be lost forever",
+      "unprofessional communication style"
+    ],
+    "explanation": "Delivery scams use urgency and authority to pressure victims into paying fake fees. Legitimate delivery companies never demand immediate payment via text message links."
+  }
+]

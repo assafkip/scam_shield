@@ -1,0 +1,83 @@
+{
+  "name": "scamshield-prd02",
+  "version": "2.1.0",
+  "description": "PRD-02 v2.1: Trust-from-Choices & Pressure Meter implementation",
+  "private": true,
+  "scripts": {
+    "dev": "npm run convert:legacy && npm run validate:all",
+    "build": "npm run validate:all && echo 'Build complete'",
+    "test": "npm run validate:all && npm run gm:test && npm run a11y:smoke",
+
+    "convert:legacy": "ts-node tools/convert-legacy.ts",
+    "schema:banlist": "ts-node tools/ci-banlist.ts",
+    "schema:validate": "ts-node tools/validate-scenarios.ts",
+    "gm:test": "ts-node tools/run-gamemaster.ts",
+    "a11y:smoke": "ts-node tools/a11y-smoke.ts",
+
+    "validate:all": "npm run schema:banlist && npm run schema:validate",
+    "precommit": "npm run validate:all && npm run gm:test && npm run a11y:smoke",
+
+    "clean": "rm -rf node_modules dist build .cache",
+    "clean:cache": "rm -rf .cache dist build",
+    "clean:scenarios": "rm -rf assets/scenarios/*.json && echo 'Scenarios cleared'",
+
+    "docs:validate": "echo 'Validating documentation...' && ls docs/",
+    "docs:serve": "echo 'Documentation available in docs/ directory'"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0",
+    "ajv": "^8.12.0"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "@types/react": "^18.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "."
+  },
+  "keywords": [
+    "scam-detection",
+    "security-training",
+    "trust-calibration",
+    "pressure-resistance",
+    "accessibility",
+    "offline-first"
+  ],
+  "author": "ScamShield Team",
+  "license": "MIT",
+  "prd": {
+    "version": "PRD-02 v2.1",
+    "features": [
+      "unified-conversation-schema",
+      "trust-pressure-feedback",
+      "30-second-demo",
+      "enhanced-debrief",
+      "accessibility-compliant",
+      "offline-first"
+    ],
+    "reliability": {
+      "target": "95%",
+      "measured": "TBD"
+    }
+  },
+  "ci": {
+    "stages": [
+      "schema:banlist",
+      "schema:validate",
+      "gm:test",
+      "a11y:smoke"
+    ],
+    "requirements": {
+      "reliability": ">=95%",
+      "accessibility": ">=80%",
+      "legacy_fields": "0"
+    }
+  }
+}

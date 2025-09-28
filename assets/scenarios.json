@@ -1,0 +1,212 @@
+[
+  {
+    "id": "ad_001",
+    "audience": "adult",
+    "platform": "whatsapp",
+    "difficulty": 1,
+    "isScam": true,
+    "hint": "Check sender domain",
+    "explanation": "Urgent tone + mismatched domain.",
+    "redFlags": ["urgent tone", "mismatched domain"],
+    "messages": [
+      {"from": "Unknown", "text": "URGENT! Verify now", "t": 0},
+      {"from": "You", "text": "What is this about?", "t": 1}
+    ],
+    "timerSec": 30
+  },
+  {
+    "id": "ad_002",
+    "audience": "adult",
+    "platform": "email",
+    "difficulty": 2,
+    "isScam": false,
+    "hint": "Check official communication",
+    "explanation": "Legitimate bank notification with proper domain and no urgency.",
+    "redFlags": [],
+    "messages": [
+      {"from": "YourBank", "text": "Your monthly statement is ready", "t": 0},
+      {"from": "You", "text": "Thanks for the update", "t": 1}
+    ],
+    "timerSec": 30
+  },
+  {
+    "id": "ad_003",
+    "audience": "adult",
+    "platform": "sms",
+    "difficulty": 3,
+    "isScam": true,
+    "hint": "Too good to be true",
+    "explanation": "Prize scam with suspicious link and no prior entry.",
+    "redFlags": ["unexpected prize", "suspicious link", "urgency"],
+    "messages": [
+      {"from": "+1234567", "text": "Congratulations! You've won $1000! Click here: bit.ly/win", "t": 0},
+      {"from": "You", "text": "I didn't enter any contest", "t": 1},
+      {"from": "+1234567", "text": "Act fast! Expires in 1 hour!", "t": 2}
+    ],
+    "timerSec": 30
+  },
+  {
+    "id": "rom_001",
+    "audience": "adult",
+    "platform": "tinder",
+    "difficulty": 4,
+    "isScam": true,
+    "hint": "Too professional for dating app",
+    "explanation": "Romance scammer impersonating Tinder CEO to build trust and eventually ask for money.",
+    "redFlags": ["fake identity", "immediate love bombing", "asks for money", "refuses video calls"],
+    "messages": [
+      {"from": "Sean Rad", "text": "Hi! I'm Sean, CEO of Tinder. I noticed your profile and was impressed!", "t": 0},
+      {"from": "You", "text": "Really? That's surprising!", "t": 1},
+      {"from": "Sean Rad", "text": "I feel a real connection. Would love to meet but I'm traveling for business. Can you help with a small loan?", "t": 2},
+      {"from": "You", "text": "This seems suspicious...", "t": 3}
+    ],
+    "timerSec": 45
+  },
+  {
+    "id": "job_001",
+    "audience": "adult",
+    "platform": "email",
+    "difficulty": 3,
+    "isScam": true,
+    "hint": "Check company details",
+    "explanation": "Fake job offer with poor grammar and requests for personal information upfront.",
+    "redFlags": ["poor grammar", "immediate hiring", "requests SSN", "no interview process"],
+    "messages": [
+      {"from": "hr@amazn-jobs.com", "text": "Congratulations! You are hired for remote position $5000/week. Send SSN and bank details to start immediately.", "t": 0},
+      {"from": "You", "text": "I never applied for this position", "t": 1},
+      {"from": "hr@amazn-jobs.com", "text": "No problem! We selected you from resume database. Very urgent need start Monday!", "t": 2}
+    ],
+    "timerSec": 40
+  },
+  {
+    "id": "gov_001",
+    "audience": "adult",
+    "platform": "sms",
+    "difficulty": 5,
+    "isScam": true,
+    "hint": "Government agencies don't text threats",
+    "explanation": "IRS imposter scam using fear tactics and immediate payment demands.",
+    "redFlags": ["threatens arrest", "demands immediate payment", "requests gift cards", "creates urgency"],
+    "messages": [
+      {"from": "IRS ALERT", "text": "FINAL NOTICE: You owe $2,847 in back taxes. Pay within 24 hours or face arrest warrant.", "t": 0},
+      {"from": "You", "text": "This doesn't seem right", "t": 1},
+      {"from": "IRS ALERT", "text": "This is your LAST WARNING. Buy iTunes gift cards and call 555-0199 immediately to avoid jail time.", "t": 2}
+    ],
+    "timerSec": 50
+  },
+  {
+    "id": "tech_001",
+    "audience": "adult",
+    "platform": "email",
+    "difficulty": 2,
+    "isScam": true,
+    "hint": "Microsoft doesn't send virus alerts",
+    "explanation": "Fake tech support scam claiming computer is infected to gain remote access.",
+    "redFlags": ["unsolicited alert", "requests remote access", "creates panic", "suspicious phone number"],
+    "messages": [
+      {"from": "Microsoft Security", "text": "CRITICAL ALERT: Your computer is infected with 247 viruses! Call 1-800-VIRUS now for immediate removal!", "t": 0},
+      {"from": "You", "text": "How do you know about my computer?", "t": 1},
+      {"from": "Microsoft Security", "text": "We monitor all Windows computers. Download TeamViewer now and give us access code to fix immediately!", "t": 2}
+    ],
+    "timerSec": 35
+  },
+  {
+    "id": "pkg_001",
+    "audience": "adult",
+    "platform": "sms",
+    "difficulty": 1,
+    "isScam": false,
+    "hint": "Legitimate delivery notification",
+    "explanation": "Authentic FedEx delivery notification with proper tracking number and no suspicious links.",
+    "redFlags": [],
+    "messages": [
+      {"from": "FedEx", "text": "Your package #1234567890 will be delivered tomorrow between 9AM-5PM. Track: fedex.com/tracking", "t": 0},
+      {"from": "You", "text": "Perfect, I've been waiting for this delivery", "t": 1}
+    ],
+    "timerSec": 25
+  },
+  {
+    "id": "bank_001",
+    "audience": "adult",
+    "platform": "email",
+    "difficulty": 2,
+    "isScam": false,
+    "hint": "Legitimate fraud protection",
+    "explanation": "Real bank fraud alert with proper security measures and official contact information.",
+    "redFlags": [],
+    "messages": [
+      {"from": "Chase Security", "text": "We detected unusual activity on your account. Please verify recent transactions by logging into chase.com or calling the number on your card.", "t": 0},
+      {"from": "You", "text": "I'll check my account right away", "t": 1},
+      {"from": "Chase Security", "text": "Thank you. For your security, we never ask for passwords via email. Contact us through official channels only.", "t": 2}
+    ],
+    "timerSec": 30
+  },
+  {
+    "id": "crypto_001",
+    "audience": "adult",
+    "platform": "whatsapp",
+    "difficulty": 4,
+    "isScam": true,
+    "hint": "No such thing as guaranteed returns",
+    "explanation": "Cryptocurrency investment scam promising unrealistic returns with upfront payment required.",
+    "redFlags": ["guaranteed returns", "get rich quick", "requires upfront payment", "pressure tactics"],
+    "messages": [
+      {"from": "Crypto Expert", "text": "🚀 EXCLUSIVE OFFER: Turn $500 into $50,000 in 30 days! Bitcoin mining pool guaranteed 10,000% returns!", "t": 0},
+      {"from": "You", "text": "That sounds too good to be true", "t": 1},
+      {"from": "Crypto Expert", "text": "Only 5 spots left! Send $500 Bitcoin deposit now to secure your position. My last student made $100K!", "t": 2},
+      {"from": "You", "text": "Can you provide proof of these returns?", "t": 3},
+      {"from": "Crypto Expert", "text": "No time for questions! Offer expires in 1 hour. Send deposit or miss out forever!", "t": 4}
+    ],
+    "timerSec": 60
+  },
+  {
+    "id": "rental_001",
+    "audience": "adult",
+    "platform": "email",
+    "difficulty": 3,
+    "isScam": true,
+    "hint": "Price too low for location",
+    "explanation": "Rental scam offering luxury apartment at below-market rate requiring deposit before viewing.",
+    "redFlags": ["price too low", "can't meet in person", "demands deposit upfront", "poor English"],
+    "messages": [
+      {"from": "landlord.nyc@gmail.com", "text": "Beautiful 2BR Manhattan apartment only $800/month! Must rent quickly as I travel abroad. Send $1600 security deposit via Western Union to hold.", "t": 0},
+      {"from": "You", "text": "Can I view the apartment first?", "t": 1},
+      {"from": "landlord.nyc@gmail.com", "text": "Sorry I am in London for business. Send deposit today and I mail keys tomorrow. Very honest person needed!", "t": 2}
+    ],
+    "timerSec": 45
+  },
+  {
+    "id": "charity_001",
+    "audience": "adult",
+    "platform": "sms",
+    "difficulty": 4,
+    "isScam": true,
+    "hint": "Legitimate charities don't text for donations",
+    "explanation": "Fake charity scam exploiting recent disaster to steal money with high-pressure tactics.",
+    "redFlags": ["unsolicited donation request", "urgent deadline", "requests cash/gift cards", "no charity details"],
+    "messages": [
+      {"from": "Disaster Relief", "text": "URGENT: Hurricane victims need your help! Donate now via CashApp $DisasterHelp. Every dollar counts! Reply YES to give $25.", "t": 0},
+      {"from": "You", "text": "How do I know this is legitimate?", "t": 1},
+      {"from": "Disaster Relief", "text": "People are dying! No time for verification. Send money NOW or lives will be lost. Text DONATE for instructions.", "t": 2}
+    ],
+    "timerSec": 40
+  },
+  {
+    "id": "friend_001",
+    "audience": "adult",
+    "platform": "whatsapp",
+    "difficulty": 5,
+    "isScam": true,
+    "hint": "Verify identity through other means",
+    "explanation": "Account compromise scam where scammer impersonates friend in emergency to request money.",
+    "redFlags": ["unexpected emergency", "requests money", "can't call", "unusual communication style"],
+    "messages": [
+      {"from": "Sarah", "text": "Hey! I'm in trouble and need help urgently. Can you send me $500? My phone is about to die.", "t": 0},
+      {"from": "You", "text": "What happened? Are you okay?", "t": 1},
+      {"from": "Sarah", "text": "Stranded at airport, wallet stolen, need money for ticket home. Can't call, phone dying. Please Venmo @sarah-help-123 ASAP!", "t": 2},
+      {"from": "You", "text": "This doesn't sound like how you usually text...", "t": 3},
+      {"from": "Sarah", "text": "Please just help! Time running out. Send money now, explain later!", "t": 4}
+    ],
+    "timerSec": 55
+  }
+]

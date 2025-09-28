@@ -1,0 +1,71 @@
+{
+  "id": "sdat_10",
+  "title": "Scam Detection Assessment - 10 Questions",
+  "items": [
+    {
+      "id": "q1",
+      "text": "You receive an email saying you've won $10,000 but need to pay $500 in processing fees first.",
+      "isScam": true,
+      "explanation": "Real winnings never require upfront fees. This is a classic advance fee scam."
+    },
+    {
+      "id": "q2", 
+      "text": "Your bank sends you an official letter asking you to update your account information online.",
+      "isScam": false,
+      "explanation": "Banks do send legitimate account update requests, though always verify by calling them directly."
+    },
+    {
+      "id": "q3",
+      "text": "Someone on a dating app wants to move your conversation to WhatsApp immediately.",
+      "isScam": true,
+      "explanation": "Moving off-platform quickly is a red flag - scammers want to avoid platform safety measures."
+    },
+    {
+      "id": "q4",
+      "text": "You get a call from 'Microsoft' saying your computer has been hacked and they need remote access.",
+      "isScam": true,
+      "explanation": "Microsoft doesn't make unsolicited calls. This is a tech support scam."
+    },
+    {
+      "id": "q5",
+      "text": "A friend texts you asking to borrow money because they lost their wallet.",
+      "isScam": false,
+      "explanation": "This could be legitimate, though always verify by calling them on a known number."
+    },
+    {
+      "id": "q6",
+      "text": "You're offered a job that pays $200/hour for data entry work from home with no experience required.",
+      "isScam": true,
+      "explanation": "Unrealistic pay for simple work is a major red flag. These are often money laundering schemes."
+    },
+    {
+      "id": "q7",
+      "text": "Your credit card company sends you a new card before your old one expires.",
+      "isScam": false,
+      "explanation": "Credit card companies routinely send replacement cards before expiration dates."
+    },
+    {
+      "id": "q8",
+      "text": "Someone claims they're stranded abroad and need you to wire money for emergency travel.",
+      "isScam": true,
+      "explanation": "Emergency money requests, especially wire transfers, are classic scam tactics."
+    },
+    {
+      "id": "q9",
+      "text": "You receive a package you didn't order and there's no charge on your credit card.",
+      "isScam": false,
+      "explanation": "While suspicious, this could be a legitimate mistake or gift. Monitor your accounts."
+    },
+    {
+      "id": "q10",
+      "text": "An investment advisor guarantees 50% returns with 'zero risk' on cryptocurrency.",
+      "isScam": true,
+      "explanation": "No legitimate investment guarantees high returns with zero risk. This is an investment scam."
+    }
+  ],
+  "tips": [
+    "Verify unexpected requests by contacting the person/organization through a known, trusted method",
+    "Be suspicious of urgent requests for money, personal information, or immediate action",
+    "Research investment opportunities independently and never trust 'guaranteed' high returns"
+  ]
+}

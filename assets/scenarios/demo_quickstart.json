@@ -1,0 +1,111 @@
+{
+  "id": "demo_quickstart",
+  "title": "Spot the Scam: Delivery Fee",
+  "difficulty": "easy",
+  "meta": {
+    "scamType": "phishing",
+    "locale": "en-US",
+    "a11yHints": [
+      "Listen for urgent language",
+      "Question unexpected fees",
+      "Verify through official channels"
+    ]
+  },
+  "entryStepId": "s1",
+  "steps": [
+    {
+      "id": "s1",
+      "actor": "scammer",
+      "text": "URGENT: Your package delivery failed. Pay $15 processing fee now to reschedule: bit.ly/delivery-pay"
+    },
+    {
+      "id": "s2",
+      "actor": "system",
+      "text": "How do you respond to this message?",
+      "choices": [
+        {
+          "id": "choice_pay",
+          "label": "Pay the fee immediately",
+          "pressureDelta": 10,
+          "trustHint": "too_trusting",
+          "nextStepId": "s3_scammed"
+        },
+        {
+          "id": "choice_question",
+          "label": "Ask why there's a delivery fee",
+          "pressureDelta": 5,
+          "trustHint": "appropriate",
+          "nextStepId": "s3_pressure"
+        },
+        {
+          "id": "choice_verify",
+          "label": "Check with the courier company directly",
+          "pressureDelta": -5,
+          "trustHint": "appropriate",
+          "nextStepId": "s3_safe"
+        }
+      ]
+    },
+    {
+      "id": "s3_scammed",
+      "actor": "scammer",
+      "text": "Perfect! Click this secure payment link and enter your card details. Hurry - only 5 minutes left!",
+      "terminal": true
+    },
+    {
+      "id": "s3_pressure",
+      "actor": "scammer",
+      "text": "The fee covers failed delivery costs. Your package will be returned to sender in 1 hour if not paid!",
+      "choices": [
+        {
+          "id": "choice_panic",
+          "label": "Okay, I'll pay to avoid losing my package",
+          "pressureDelta": 15,
+          "trustHint": "too_trusting",
+          "nextStepId": "s4_scammed"
+        },
+        {
+          "id": "choice_resist",
+          "label": "This doesn't seem right. I'll call the company",
+          "pressureDelta": -10,
+          "trustHint": "appropriate",
+          "nextStepId": "s4_wise"
+        }
+      ]
+    },
+    {
+      "id": "s3_safe",
+      "actor": "ally",
+      "text": "Smart choice! You call the courier company and learn they never charge delivery fees via text links.",
+      "terminal": true
+    },
+    {
+      "id": "s4_scammed",
+      "actor": "scammer",
+      "text": "Great! Here's the payment form. Enter your full card number, CVV, and billing address now.",
+      "terminal": true
+    },
+    {
+      "id": "s4_wise",
+      "actor": "ally",
+      "text": "Excellent! You avoided a scam. Real courier companies don't demand payment through random text links.",
+      "terminal": true
+    }
+  ],
+  "debrief": {
+    "redFlagPrimary": "Urgency tactics combined with suspicious payment links",
+    "redFlagSecondary": [
+      "Unexpected delivery fee request",
+      "Short domain link (bit.ly) instead of official website",
+      "Pressure countdown creating false urgency",
+      "Request for immediate payment via text message"
+    ],
+    "teachingPoints": [
+      "Real courier companies never demand payment through text message links",
+      "Legitimate delivery issues are handled through official websites or customer service",
+      "Urgent countdowns are a classic manipulation tactic to bypass critical thinking",
+      "Always verify unexpected requests by contacting the company directly through official channels"
+    ],
+    "targetTrustRange": [40, 60]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "id": "y01_dating",
+  "title": "\"Profile Verification Fee\"",
+  "context": "dating",
+  "tacticTags": ["emotion", "authority"],
+  "indicators": [
+    {"type": "verification_fee", "text": "verification fee"},
+    {"type": "emotional_manipulation", "text": "I really like talking with you"}
+  ],
+  "steps": [
+    {
+      "id": "step_1",
+      "type": "chat",
+      "text": "Hey! I really like talking with you. I'd love to meet up this weekend. But first, I need to verify you're real because I've been catfished before.",
+      "speaker": "scammer",
+      "choices": [
+        {
+          "id": "pay",
+          "label": "Pay the $5 to show I'm serious",
+          "safe": false,
+          "next": "debrief"
+        },
+        {
+          "id": "suggest_video",
+          "label": "Suggest a quick video call instead", 
+          "safe": true,
+          "next": "debrief"
+        },
+        {
+          "id": "ignore",
+          "label": "Stop responding",
+          "safe": true,
+          "next": "debrief"
+        }
+      ],
+      "feedback": "Real people don't ask for money to verify themselves - video calls work better!"
+    }
+  ],
+  "debrief": "EMOTION + AUTHORITY: This scammer uses emotional manipulation (\"I really like you\") combined with fake authority (verification requirement). Real dating apps handle verification for free, and legitimate matches suggest video calls, not payment.",
+  "quiz": {
+    "items": [
+      {
+        "id": "q1",
+        "question": "What should you do if someone asks for a verification fee on a dating app?",
+        "options": [
+          "Pay if it's only a small amount",
+          "Suggest a video call instead", 
+          "Ask your friends for advice first"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q2",
+        "question": "Which emotion do dating scammers often exploit?",
+        "options": [
+          "Anger",
+          "Loneliness and desire for connection",
+          "Fear of missing out"
+        ],
+        "correctIndex": 1
+      }
+    ]
+  },
+  "provenance": {
+    "source": "FTC consumer guidance",
+    "url": "https://consumer.ftc.gov/articles/how-avoid-romance-scams"
+  }
+}

@@ -1,0 +1,589 @@
+{
+  "firstLayout": "Boot",
+  "gdVersion": {
+    "build": 147,
+    "major": 5,
+    "minor": 3,
+    "revision": 0
+  },
+  "properties": {
+    "name": "ScamShield",
+    "description": "Educational scam detection game - fully offline, privacy-first",
+    "version": "1.0.0",
+    "author": "ScamShield Team",
+    "windowWidth": 360,
+    "windowHeight": 640,
+    "latestCompilationDirectory": "build",
+    "maxFPS": 60,
+    "minFPS": 20,
+    "verticalSync": false,
+    "platformSpecificAssets": {},
+    "loadingScreen": {
+      "backgroundColor": 255,
+      "backgroundColorB": 255,
+      "backgroundColorG": 255,
+      "backgroundColorR": 255,
+      "gdevelopLogoStyle": "Dark",
+      "progressBarColor": 255,
+      "progressBarColorB": 255,
+      "progressBarColorG": 255,
+      "progressBarColorR": 255,
+      "showGDevelopSplash": false,
+      "showProgressBar": true
+    }
+  },
+  "resources": {
+    "resources": [
+      {
+        "file": "assets/images/mascot/companion_neutral.png",
+        "kind": "image",
+        "name": "companion_neutral",
+        "userAdded": true
+      },
+      {
+        "file": "assets/images/mascot/companion_happy.png", 
+        "kind": "image",
+        "name": "companion_happy",
+        "userAdded": true
+      },
+      {
+        "file": "assets/images/mascot/companion_sad.png",
+        "kind": "image", 
+        "name": "companion_sad",
+        "userAdded": true
+      },
+      {
+        "file": "assets/images/mascot/companion_concerned.png",
+        "kind": "image",
+        "name": "companion_concerned", 
+        "userAdded": true
+      },
+      {
+        "file": "assets/images/bubbles/bubble_incoming.png",
+        "kind": "image",
+        "name": "bubble_incoming",
+        "userAdded": true
+      },
+      {
+        "file": "assets/images/bubbles/bubble_outgoing.png",
+        "kind": "image",
+        "name": "bubble_outgoing",
+        "userAdded": true
+      },
+      {
+        "file": "assets/images/bubbles/bubble_highlight.png",
+        "kind": "image", 
+        "name": "bubble_highlight",
+        "userAdded": true
+      },
+      {
+        "file": "assets/images/badges/badge_bronze.png",
+        "kind": "image",
+        "name": "badge_bronze",
+        "userAdded": true
+      },
+      {
+        "file": "assets/images/badges/badge_silver.png",
+        "kind": "image",
+        "name": "badge_silver", 
+        "userAdded": true
+      },
+      {
+        "file": "assets/images/badges/badge_gold.png",
+        "kind": "image",
+        "name": "badge_gold",
+        "userAdded": true
+      },
+      {
+        "file": "assets/images/badges/badge_star.png",
+        "kind": "image",
+        "name": "badge_star",
+        "userAdded": true
+      },
+      {
+        "file": "assets/content/content_index.json",
+        "kind": "json",
+        "name": "content_index",
+        "userAdded": true
+      }
+    ]
+  },
+  "objects": [],
+  "objectsGroups": [],
+  "variables": [
+    {
+      "name": "Registry",
+      "type": "structure",
+      "value": ""
+    },
+    {
+      "name": "Current", 
+      "type": "structure",
+      "value": ""
+    },
+    {
+      "name": "Settings",
+      "type": "structure", 
+      "value": ""
+    }
+  ],
+  "layouts": [
+    {
+      "name": "Boot",
+      "mangledName": "Boot",
+      "r": 40,
+      "v": 40,
+      "b": 40,
+      "associatedLayout": "",
+      "standardSortMethod": true,
+      "stopSoundsOnStartup": true,
+      "title": "",
+      "behaviorsSharedData": [],
+      "objects": [
+        {
+          "name": "LoadingText",
+          "type": "TextObject::Text",
+          "variables": [],
+          "behaviorsSharedData": [],
+          "behaviors": [],
+          "content": {
+            "bold": false,
+            "characterSize": 24,
+            "color": "255;255;255",
+            "font": "",
+            "italic": false,
+            "text": "Loading scenarios...",
+            "underlined": false
+          }
+        }
+      ],
+      "objectsGroups": [],
+      "variables": [],
+      "instances": [
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "",
+          "name": "LoadingText",
+          "persistentUuid": "b1",
+          "width": 0,
+          "x": 50,
+          "y": 300,
+          "zOrder": 1,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        }
+      ],
+      "layers": [
+        {
+          "ambientLightColorB": 128,
+          "ambientLightColorG": 128,
+          "ambientLightColorR": 128,
+          "camera3DFarPlaneDistance": 10000,
+          "camera3DFieldOfView": 45,
+          "camera3DNearPlaneDistance": 3,
+          "cameraType": "",
+          "followBaseLayerCamera": false,
+          "isLightingLayer": false,
+          "isLocked": false,
+          "name": "",
+          "renderingType": "",
+          "visibility": true,
+          "cameras": [
+            {
+              "defaultSize": true,
+              "defaultViewport": true,
+              "height": 0,
+              "viewportBottom": 1,
+              "viewportLeft": 0,
+              "viewportRight": 1,
+              "viewportTop": 0,
+              "width": 0
+            }
+          ],
+          "effects": []
+        }
+      ],
+      "behaviorsSharedData": []
+    },
+    {
+      "name": "Home",
+      "mangledName": "Home", 
+      "r": 60,
+      "v": 60,
+      "b": 60,
+      "associatedLayout": "",
+      "standardSortMethod": true,
+      "stopSoundsOnStartup": true,
+      "title": "",
+      "behaviorsSharedData": [],
+      "objects": [
+        {
+          "name": "TitleText",
+          "type": "TextObject::Text",
+          "variables": [],
+          "behaviorsSharedData": [],
+          "behaviors": [],
+          "content": {
+            "bold": true,
+            "characterSize": 32,
+            "color": "255;255;255",
+            "font": "",
+            "italic": false,
+            "text": "ScamShield",
+            "underlined": false
+          }
+        },
+        {
+          "name": "StartButton",
+          "type": "PrimitiveDrawing::Drawer",
+          "variables": [],
+          "behaviorsSharedData": [],
+          "behaviors": [],
+          "content": {
+            "absoluteCoordinates": false,
+            "antialiasing": "none",
+            "clearBetweenFrames": true,
+            "coordinatesType": "absolute",
+            "fillColor": "76;175;80",
+            "fillOpacity": 255,
+            "outlineColor": "46;125;50",
+            "outlineOpacity": 255,
+            "outlineSize": 2
+          }
+        }
+      ],
+      "objectsGroups": [],
+      "variables": [],
+      "instances": [
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "",
+          "name": "TitleText",
+          "persistentUuid": "h1",
+          "width": 0,
+          "x": 90,
+          "y": 100,
+          "zOrder": 1,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 60,
+          "keepRatio": false,
+          "layer": "",
+          "name": "StartButton",
+          "persistentUuid": "h2",
+          "width": 200,
+          "x": 80,
+          "y": 200,
+          "zOrder": 1,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        }
+      ],
+      "layers": [
+        {
+          "ambientLightColorB": 128,
+          "ambientLightColorG": 128,
+          "ambientLightColorR": 128,
+          "camera3DFarPlaneDistance": 10000,
+          "camera3DFieldOfView": 45,
+          "camera3DNearPlaneDistance": 3,
+          "cameraType": "",
+          "followBaseLayerCamera": false,
+          "isLightingLayer": false,
+          "isLocked": false,
+          "name": "",
+          "renderingType": "",
+          "visibility": true,
+          "cameras": [
+            {
+              "defaultSize": true,
+              "defaultViewport": true,
+              "height": 0,
+              "viewportBottom": 1,
+              "viewportLeft": 0,
+              "viewportRight": 1,
+              "viewportTop": 0,
+              "width": 0
+            }
+          ],
+          "effects": []
+        }
+      ],
+      "behaviorsSharedData": []
+    },
+    {
+      "name": "PlayScene",
+      "mangledName": "PlayScene",
+      "r": 30,
+      "v": 30,
+      "b": 50,
+      "associatedLayout": "",
+      "standardSortMethod": true,
+      "stopSoundsOnStartup": true,
+      "title": "",
+      "behaviorsSharedData": [],
+      "objects": [
+        {
+          "name": "Mascot",
+          "type": "Sprite",
+          "variables": [],
+          "behaviorsSharedData": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "neutral",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 1,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "companion_neutral",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "happy",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 1,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "companion_happy",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "sad",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 1,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "companion_sad",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "concerned",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 1,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "companion_concerned",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ChatBubble",
+          "type": "Sprite",
+          "variables": [],
+          "behaviorsSharedData": [],
+          "behaviors": [],
+          "animations": [
+            {
+              "name": "incoming",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 1,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "bubble_incoming",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre", 
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "outgoing",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 1,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "bubble_outgoing",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "objectsGroups": [],
+      "variables": [],
+      "instances": [
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 80,
+          "keepRatio": false,
+          "layer": "",
+          "name": "Mascot",
+          "persistentUuid": "p1",
+          "width": 80,
+          "x": 20,
+          "y": 20,
+          "zOrder": 1,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        }
+      ],
+      "layers": [
+        {
+          "ambientLightColorB": 128,
+          "ambientLightColorG": 128,
+          "ambientLightColorR": 128,
+          "camera3DFarPlaneDistance": 10000,
+          "camera3DFieldOfView": 45,
+          "camera3DNearPlaneDistance": 3,
+          "cameraType": "",
+          "followBaseLayerCamera": false,
+          "isLightingLayer": false,
+          "isLocked": false,
+          "name": "",
+          "renderingType": "",
+          "visibility": true,
+          "cameras": [
+            {
+              "defaultSize": true,
+              "defaultViewport": true,
+              "height": 0,
+              "viewportBottom": 1,
+              "viewportLeft": 0,
+              "viewportRight": 1,
+              "viewportTop": 0,
+              "width": 0
+            }
+          ],
+          "effects": []
+        }
+      ],
+      "behaviorsSharedData": []
+    }
+  ],
+  "externalEvents": [],
+  "eventsFunctionsExtensions": [],
+  "externalLayouts": [],
+  "externalSourceFiles": []
+}

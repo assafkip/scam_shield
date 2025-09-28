@@ -1,79 +1,113 @@
 import 'package:flutter/material.dart';
-import 'package:scamshield/screens/training_screen.dart';
-import 'package:scamshield/screens/youth_training_screen.dart';
-import 'package:scamshield/screens/sdat_quiz_screen.dart'; // Import SdatQuizScreen
+import 'package:provider/provider.dart';
+import 'state/app_state.dart';
+import 'pages/scenario_picker.dart';
 
-void main() => runApp(const ScamShieldApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const ScamShieldApp());
+}
 
 class ScamShieldApp extends StatelessWidget {
   const ScamShieldApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'ScamShield',
-      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.teal),
-      home: const HomeScreen(),
+    return ChangeNotifierProvider(
+      create: (context) => AppState()..initializeApp(),
+      child: MaterialApp(
+        title: 'ScamShield',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color(0xFF2196F3),
+          ).copyWith(
+            primary: const Color(0xFF2196F3),
+            error: const Color(0xFFFF4444),
+            surface: Colors.white,
+            onSurface: Colors.black87,
+          ),
+          useMaterial3: true,
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Color(0xFF2196F3),
+            foregroundColor: Colors.white,
+            elevation: 4,
+            shadowColor: Colors.black26,
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF2196F3),
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              elevation: 2,
+              shadowColor: Colors.black26,
+            ),
+          ),
+          outlinedButtonTheme: OutlinedButtonThemeData(
+            style: OutlinedButton.styleFrom(
+              backgroundColor: Colors.white,
+              foregroundColor: const Color(0xFF2196F3),
+              side: const BorderSide(color: Color(0xFF2196F3)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+          ),
+          sliderTheme: SliderThemeData(
+            activeTrackColor: const Color(0xFF00C851),
+            inactiveTrackColor: const Color(0xFFFF4444).withOpacity(0.3),
+            thumbColor: Colors.white,
+            overlayColor: const Color(0xFF2196F3).withOpacity(0.2),
+            thumbShape: const RoundSliderThumbShape(
+              enabledThumbRadius: 12,
+              elevation: 4,
+            ),
+            trackHeight: 6,
+          ),
+          extensions: [
+            CustomColors(
+              success: const Color(0xFF00C851),
+              warning: const Color(0xFFFFD600),
+            ),
+          ],
+        ),
+        home: const ScenarioPickerPage(),
+      ),
     );
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+@immutable
+class CustomColors extends ThemeExtension<CustomColors> {
+  final Color success;
+  final Color warning;
+
+  const CustomColors({
+    required this.success,
+    required this.warning,
+  });
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('ScamShield')),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              'Learn to spot scams — through play.',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(height: 16),
-            FilledButton.icon(
-              icon: const Icon(Icons.play_circle_fill),
-              label: const Text('Start Training'),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const TrainingScreen()),
-                );
-              },
-            ),
-            const SizedBox(height: 12),
-            FilledButton.icon(
-              icon: const Icon(Icons.trending_up),
-              label: const Text('Next-Gen Scams'),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => const YouthTrainingScreen(),
-                  ),
-                );
-              },
-            ),
-            const SizedBox(height: 12),
-            FilledButton.icon(
-              icon: const Icon(Icons.quiz),
-              label: const Text('Quick Test (10)'),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const SdatQuizScreen()),
-                );
-              },
-            ),
-            const SizedBox(height: 12),
-            Text(
-              'Short interactive scenarios • Debriefs • Quick quizzes • Badges',
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ],
-        ),
-      ),
+  CustomColors copyWith({
+    Color? success,
+    Color? warning,
+  }) {
+    return CustomColors(
+      success: success ?? this.success,
+      warning: warning ?? this.warning,
+    );
+  }
+
+  @override
+  CustomColors lerp(ThemeExtension<CustomColors>? other, double t) {
+    if (other is! CustomColors) {
+      return this;
+    }
+    return CustomColors(
+      success: Color.lerp(success, other.success, t)!,
+      warning: Color.lerp(warning, other.warning, t)!,
     );
   }
 }
