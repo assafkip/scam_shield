@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ScamShield Scenario",
+  "type": "object",
+  "required": ["id", "title", "difficulty", "meta", "steps", "entryStepId", "debrief"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9_]+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "difficulty": {
+      "enum": ["easy", "medium", "hard"]
+    },
+    "meta": {
+      "type": "object",
+      "required": ["scamType", "locale"],
+      "properties": {
+        "scamType": {
+          "type": "string",
+          "enum": ["phishing", "romance", "tech_support", "prize", "authority", "marketplace", "crypto", "job"]
+        },
+        "locale": {
+          "type": "string",
+          "pattern": "^[a-z]{2}-[A-Z]{2}$"
+        },
+        "a11yHints": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "actor", "text"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$"
+          },
+          "actor": {
+            "enum": ["scammer", "ally", "system"]
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "choices": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "label", "pressureDelta", "trustHint", "nextStepId"],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9_]+$"
+                },
+                "label": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "pressureDelta": {
+                  "type": "number",
+                  "minimum": -15,
+                  "maximum": 15
+                },
+                "trustHint": {
+                  "enum": ["too_trusting", "appropriate", "too_skeptical"]
+                },
+                "nextStepId": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9_]+$"
+                },
+                "flags": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "next": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$"
+          },
+          "terminal": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "entryStepId": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$"
+    },
+    "debrief": {
+      "type": "object",
+      "required": ["redFlagPrimary", "teachingPoints", "targetTrustRange"],
+      "properties": {
+        "redFlagPrimary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "redFlagSecondary": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "teachingPoints": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": {"type": "string"}
+        },
+        "targetTrustRange": {
+          "type": "array",
+          "items": [
+            {"type": "number", "minimum": 0, "maximum": 100},
+            {"type": "number", "minimum": 0, "maximum": 100}
+          ],
+          "minItems": 2,
+          "maxItems": 2
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

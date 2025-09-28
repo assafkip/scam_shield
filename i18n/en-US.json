@@ -1,0 +1,155 @@
+{
+  "app": {
+    "title": "ScamShield",
+    "description": "Learn to spot scams with interactive training",
+    "version": "PRD-02 v2.1"
+  },
+  "trust": {
+    "label": "Trust Level",
+    "target": "Target",
+    "current": "Current",
+    "feedback": {
+      "too_high": "You're trusting too easily",
+      "too_low": "Healthy skepticism",
+      "optimal": "Good judgment",
+      "on_target": "On target"
+    },
+    "zones": {
+      "too_high": "Too High",
+      "too_low": "Too Low",
+      "optimal": "On Target"
+    },
+    "analysis": {
+      "too_trusting": "You trusted too easily ({score}%). Target range is {min}-{max}%.",
+      "too_skeptical": "You were very cautious ({score}% trust). Target range is {min}-{max}%.",
+      "well_calibrated": "Excellent trust calibration ({score}%). You're in the optimal range.",
+      "recommendation_trusting": "Be more skeptical of urgent requests and verify through official channels.",
+      "recommendation_skeptical": "Some caution is good, but don't miss legitimate communications.",
+      "recommendation_calibrated": "Keep practicing this balanced approach to build confidence."
+    }
+  },
+  "pressure": {
+    "label": "Pressure Level",
+    "zones": {
+      "safe": "Safe",
+      "caution": "Caution",
+      "danger": "Danger",
+      "critical": "Critical"
+    },
+    "feedback": {
+      "spike": "Pressure spike: {value}% (+{delta})",
+      "reduced": "Pressure reduced: {value}% ({delta})",
+      "high": "High pressure: {value}%",
+      "building": "Pressure building: {value}%",
+      "moderate": "Moderate pressure: {value}%",
+      "low": "Low pressure: {value}%"
+    },
+    "analysis": {
+      "excellent": "Excellent pressure resistance! You resisted {resistances} manipulation attempts vs {escalations} escalations.",
+      "good": "Good pressure awareness. You resisted {resistances} times but fell for {escalations} pressure tactics.",
+      "poor": "Scammer escalated pressure {escalations} times; you resisted only {resistances} times."
+    }
+  },
+  "scenarios": {
+    "demo": {
+      "title": "Quick Demo",
+      "description": "Learn scam detection in under 30 seconds"
+    },
+    "difficulty": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "status": {
+      "not_started": "Not Started",
+      "in_progress": "In Progress",
+      "completed": "Completed"
+    }
+  },
+  "debrief": {
+    "title": "Scenario Complete",
+    "trust_analysis": "Trust Analysis",
+    "pressure_analysis": "Pressure Resistance",
+    "red_flag_primary": "Primary Red Flag",
+    "red_flag_additional": "Additional Red Flags:",
+    "teaching_points": "Key Learning Points",
+    "pressure_timeline": "Pressure Timeline",
+    "resistance_score": "Resistance Score",
+    "actions": {
+      "replay": "🔄 Replay Scenario",
+      "next": "➡️ Try Next Scenario",
+      "menu": "🏠 Return to Menu"
+    }
+  },
+  "demo_gate": {
+    "welcome": "Welcome to ScamShield",
+    "subtitle": "Learn to spot scams in under 30 seconds",
+    "preview": "Quick Demo Preview",
+    "features": {
+      "tactics": "Spot urgent pressure tactics",
+      "feedback": "See trust level feedback",
+      "patterns": "Learn red flag patterns"
+    },
+    "countdown": "Demo starts automatically in:",
+    "actions": {
+      "start": "🚀 Start Quick Demo",
+      "skip": "Skip Demo",
+      "continue": "Go to App",
+      "starting": "Starting Demo..."
+    },
+    "privacy": "Privacy: Everything runs offline. No data collection.",
+    "duration": "Duration: Less than 30 seconds to complete."
+  },
+  "offline": {
+    "banner": {
+      "title": "You're offline",
+      "description_with_cache": "{count} scenario{plural} available offline. All features work without internet.",
+      "description_no_cache": "ScamShield works fully offline. No internet required.",
+      "cached": "{count} cached"
+    },
+    "features": {
+      "feedback": "Trust & pressure feedback",
+      "completion": "Scenario completion",
+      "progress": "Learning progress",
+      "accessibility": "Accessibility features"
+    },
+    "status": {
+      "online": "Online",
+      "offline": "Offline",
+      "connected": "Connected to internet.",
+      "works_offline": "App works fully offline."
+    }
+  },
+  "accessibility": {
+    "trust_meter": "Trust level meter showing {value} percent, {status}",
+    "pressure_meter": "Pressure level meter showing {value} percent in {zone} zone",
+    "choice_selected": "Choice selected: {choice}",
+    "scenario_complete": "Scenario complete. Trust level: {trust}%. Pressure resistance: {resistance}%.",
+    "red_flag": "Red flag identified: {flag}",
+    "screen_reader": {
+      "trust_change": "Trust: {feedback}",
+      "pressure_change": "Pressure: {feedback}",
+      "pressure_spike": "Pressure increased by {delta} points to {value} due to urgency tactic",
+      "pressure_resisted": "Pressure resisted, decreased by {delta} points to {value}"
+    }
+  },
+  "navigation": {
+    "skip_to_content": "Skip to main content",
+    "menu": "Menu",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close"
+  },
+  "errors": {
+    "scenario_load_failed": "Failed to load scenario. Please try again.",
+    "network_error": "Network error. App works offline.",
+    "validation_failed": "Scenario validation failed.",
+    "cache_error": "Cache error. Some content may not be available offline."
+  },
+  "meta": {
+    "locale": "en-US",
+    "direction": "ltr",
+    "last_updated": "2024-01-15"
+  }
+}

@@ -1,0 +1,686 @@
+[
+  {
+    "id": "whatsapp_ceo_scam",
+    "title": "WhatsApp CEO Urgent Message",
+    "platform": "whatsapp",
+    "difficulty": 2,
+    "isScam": true,
+    "description": "Imposter claiming to be WhatsApp CEO with urgent verification request",
+    "trustCalibration": true,
+    "messages": {
+      "start": {
+        "id": "start",
+        "text": "URGENT! This is the WhatsApp CEO. We need you to verify your account immediately or it will be deleted. Click here to verify: wa.me/verify-account-urgent",
+        "from": "WhatsApp CEO",
+        "isFromScammer": true,
+        "phase": 0,
+        "tactics": [0, 1],
+        "manipulationIntensity": 70,
+        "choices": [
+          {
+            "id": "click_link",
+            "text": "Click the verification link",
+            "nextMessageId": "scammer_escalates",
+            "suspicionIncrease": -20,
+            "resistanceIncrease": -15,
+            "isOptimal": false,
+            "trustScore": -25
+          },
+          {
+            "id": "question_authority",
+            "text": "Why would the CEO contact me directly? This seems suspicious.",
+            "nextMessageId": "scammer_defensive",
+            "suspicionIncrease": 30,
+            "resistanceIncrease": 35,
+            "isOptimal": true,
+            "trustScore": 20
+          },
+          {
+            "id": "ask_verification",
+            "text": "Can you prove you're really the CEO?",
+            "nextMessageId": "scammer_fake_proof",
+            "suspicionIncrease": 15,
+            "resistanceIncrease": 20,
+            "isOptimal": true,
+            "trustScore": 15
+          }
+        ]
+      },
+      "scammer_escalates": {
+        "id": "scammer_escalates",
+        "text": "Good! Now enter your phone number and verification code here to complete the process. You have 5 minutes before your account is permanently deleted!",
+        "from": "WhatsApp CEO",
+        "isFromScammer": true,
+        "phase": 1,
+        "tactics": [0, 4],
+        "manipulationIntensity": 90,
+        "choices": [
+          {
+            "id": "enter_details",
+            "text": "Enter phone number and code",
+            "nextMessageId": "scam_success",
+            "suspicionIncrease": -30,
+            "resistanceIncrease": -25,
+            "isOptimal": false,
+            "trustScore": -40
+          },
+          {
+            "id": "realize_scam",
+            "text": "Wait, this is definitely a scam! Real companies don't work this way.",
+            "nextMessageId": "scam_avoided",
+            "suspicionIncrease": 50,
+            "resistanceIncrease": 60,
+            "isOptimal": true,
+            "trustScore": 30
+          }
+        ]
+      },
+      "scammer_defensive": {
+        "id": "scammer_defensive",
+        "text": "I understand your concern, but this is a security emergency! We detected suspicious activity on your account. I'm personally overseeing high-priority cases. Here's my employee ID: WA-CEO-2024. Please verify immediately!",
+        "from": "WhatsApp CEO",
+        "isFromScammer": true,
+        "phase": 1,
+        "tactics": [1, 0],
+        "manipulationIntensity": 75,
+        "choices": [
+          {
+            "id": "believe_explanation",
+            "text": "Okay, that makes sense. I'll verify now.",
+            "nextMessageId": "scammer_escalates",
+            "suspicionIncrease": -10,
+            "resistanceIncrease": -5,
+            "isOptimal": false,
+            "trustScore": -20
+          },
+          {
+            "id": "remain_suspicious",
+            "text": "Real WhatsApp would never contact users this way. This is a scam.",
+            "nextMessageId": "scam_avoided",
+            "suspicionIncrease": 40,
+            "resistanceIncrease": 50,
+            "isOptimal": true,
+            "trustScore": 35
+          }
+        ]
+      },
+      "scammer_fake_proof": {
+        "id": "scammer_fake_proof",
+        "text": "Of course! Here's my LinkedIn: linkedin.com/in/whatsapp-ceo-official and my verification badge photo. As you can see, I'm legitimate. Now please verify your account before it's too late!",
+        "from": "WhatsApp CEO",
+        "isFromScammer": true,
+        "phase": 1,
+        "tactics": [1, 2],
+        "manipulationIntensity": 65,
+        "choices": [
+          {
+            "id": "check_fake_proof",
+            "text": "That looks legitimate, I'll verify my account.",
+            "nextMessageId": "scammer_escalates",
+            "suspicionIncrease": -15,
+            "resistanceIncrease": -10,
+            "isOptimal": false,
+            "trustScore": -15
+          },
+          {
+            "id": "verify_independently",
+            "text": "I'll contact WhatsApp support directly to verify this.",
+            "nextMessageId": "scam_avoided",
+            "suspicionIncrease": 35,
+            "resistanceIncrease": 45,
+            "isOptimal": true,
+            "trustScore": 40
+          }
+        ]
+      },
+      "scam_success": {
+        "id": "scam_success",
+        "text": "Perfect! Your account has been 'verified'. Thank you for your cooperation.",
+        "from": "WhatsApp CEO",
+        "isFromScammer": true,
+        "phase": 2,
+        "tactics": [],
+        "manipulationIntensity": 100,
+        "choices": []
+      },
+      "scam_avoided": {
+        "id": "scam_avoided",
+        "text": "[You successfully identified this as a scam! WhatsApp executives never contact users directly for verification.]",
+        "from": "System",
+        "isFromScammer": false,
+        "phase": 2,
+        "tactics": [],
+        "manipulationIntensity": 0,
+        "choices": []
+      }
+    },
+    "redFlags": [
+      "Claims to be CEO contacting personally",
+      "Urgent deadline pressure",
+      "Suspicious verification link",
+      "Threatens account deletion",
+      "Poor grammar and unprofessional tone"
+    ],
+    "explanation": "Scammers impersonate authority figures to create urgency and bypass critical thinking. Real companies have formal support channels and never demand immediate action via personal messages."
+  },
+  {
+    "id": "paypal_security_legitimate",
+    "title": "PayPal Security Alert",
+    "platform": "email",
+    "difficulty": 3,
+    "isScam": false,
+    "description": "Legitimate PayPal security notification that might be mistaken for a scam",
+    "trustCalibration": true,
+    "messages": {
+      "start": {
+        "id": "start",
+        "text": "We noticed a new login to your PayPal account from San Francisco, CA. If this was you, no action needed. If not, please secure your account immediately via PayPal.com/security",
+        "from": "service@paypal.com",
+        "isFromScammer": false,
+        "phase": 0,
+        "tactics": [],
+        "manipulationIntensity": 15,
+        "choices": [
+          {
+            "id": "ignore_legitimate",
+            "text": "This looks like a scam, I'll ignore it.",
+            "nextMessageId": "missed_legitimate_alert",
+            "suspicionIncrease": 20,
+            "resistanceIncrease": 10,
+            "isOptimal": false,
+            "trustScore": -20
+          },
+          {
+            "id": "check_account",
+            "text": "I'll log into PayPal directly to check my account.",
+            "nextMessageId": "legitimate_verified",
+            "suspicionIncrease": 0,
+            "resistanceIncrease": 5,
+            "isOptimal": true,
+            "trustScore": 25
+          },
+          {
+            "id": "click_link",
+            "text": "Click the PayPal.com/security link",
+            "nextMessageId": "legitimate_but_risky",
+            "suspicionIncrease": -5,
+            "resistanceIncrease": 0,
+            "isOptimal": false,
+            "trustScore": 10
+          }
+        ]
+      },
+      "missed_legitimate_alert": {
+        "id": "missed_legitimate_alert",
+        "text": "[By ignoring this legitimate security alert, you missed a real warning about unauthorized access to your account. Always verify suspicious activity through official channels.]",
+        "from": "System",
+        "isFromScammer": false,
+        "phase": 1,
+        "tactics": [],
+        "manipulationIntensity": 0,
+        "choices": []
+      },
+      "legitimate_verified": {
+        "id": "legitimate_verified",
+        "text": "[You handled this correctly! By logging in directly, you verified this was a legitimate security alert and took appropriate action.]",
+        "from": "System",
+        "isFromScammer": false,
+        "phase": 1,
+        "tactics": [],
+        "manipulationIntensity": 0,
+        "choices": []
+      },
+      "legitimate_but_risky": {
+        "id": "legitimate_but_risky",
+        "text": "[This was legitimate, but clicking links in emails can be risky. It's safer to log in directly to your account to check for alerts.]",
+        "from": "System",
+        "isFromScammer": false,
+        "phase": 1,
+        "tactics": [],
+        "manipulationIntensity": 0,
+        "choices": []
+      }
+    },
+    "legitimateSignals": [
+      "From official PayPal domain",
+      "Doesn't demand immediate action",
+      "Provides official website reference",
+      "Professional language and formatting",
+      "Offers both action and no-action options"
+    ],
+    "explanation": "This is a legitimate security alert from PayPal. Real companies do send security notifications, but always verify by logging in directly rather than clicking email links."
+  },
+  {
+    "id": "prize_winner_scam",
+    "title": "Congratulations Prize Winner!",
+    "platform": "sms",
+    "difficulty": 2,
+    "isScam": true,
+    "description": "Classic lottery/prize scam with urgency tactics",
+    "trustCalibration": true,
+    "messages": {
+      "start": {
+        "id": "start",
+        "text": "🎉 CONGRATULATIONS! You've won $50,000 in our monthly lottery! Claim now: bit.ly/claim-prize-2024 - Expires in 24 hours! Winner #2024-7291",
+        "from": "+1-555-LOTTERY",
+        "isFromScammer": true,
+        "phase": 0,
+        "tactics": [0, 4],
+        "manipulationIntensity": 60,
+        "choices": [
+          {
+            "id": "excited_claim",
+            "text": "Amazing! I'll claim my prize right now!",
+            "nextMessageId": "scammer_fee_request",
+            "suspicionIncrease": -25,
+            "resistanceIncrease": -20,
+            "isOptimal": false,
+            "trustScore": -30
+          },
+          {
+            "id": "suspicious_response",
+            "text": "I never entered any lottery. This seems suspicious.",
+            "nextMessageId": "scammer_explains",
+            "suspicionIncrease": 25,
+            "resistanceIncrease": 30,
+            "isOptimal": true,
+            "trustScore": 25
+          },
+          {
+            "id": "ask_details",
+            "text": "What lottery is this? I don't remember entering.",
+            "nextMessageId": "scammer_fake_details",
+            "suspicionIncrease": 10,
+            "resistanceIncrease": 15,
+            "isOptimal": true,
+            "trustScore": 15
+          }
+        ]
+      },
+      "scammer_fee_request": {
+        "id": "scammer_fee_request",
+        "text": "Fantastic! To release your $50,000 prize, we need a small processing fee of $199. This covers tax handling and transfer costs. Pay via Bitcoin or gift cards for instant processing!",
+        "from": "+1-555-LOTTERY",
+        "isFromScammer": true,
+        "phase": 1,
+        "tactics": [0, 4],
+        "manipulationIntensity": 85,
+        "choices": [
+          {
+            "id": "pay_fee",
+            "text": "Okay, $199 is nothing compared to $50,000. I'll pay it.",
+            "nextMessageId": "scam_success",
+            "suspicionIncrease": -30,
+            "resistanceIncrease": -25,
+            "isOptimal": false,
+            "trustScore": -50
+          },
+          {
+            "id": "question_fee",
+            "text": "Why do I need to pay to receive my prize? That doesn't make sense.",
+            "nextMessageId": "scammer_pressure",
+            "suspicionIncrease": 30,
+            "resistanceIncrease": 35,
+            "isOptimal": true,
+            "trustScore": 30
+          },
+          {
+            "id": "realize_scam",
+            "text": "This is definitely a scam. Real prizes don't require upfront fees.",
+            "nextMessageId": "scam_avoided",
+            "suspicionIncrease": 50,
+            "resistanceIncrease": 60,
+            "isOptimal": true,
+            "trustScore": 40
+          }
+        ]
+      },
+      "scammer_explains": {
+        "id": "scammer_explains",
+        "text": "You were automatically entered when you shopped at Target last month! Your receipt number 7291 was selected. This is completely legitimate - check our website: lottery-winners-official.net",
+        "from": "+1-555-LOTTERY",
+        "isFromScammer": true,
+        "phase": 1,
+        "tactics": [2, 1],
+        "manipulationIntensity": 65,
+        "choices": [
+          {
+            "id": "believe_explanation",
+            "text": "Oh right, I did shop at Target! I'll claim my prize.",
+            "nextMessageId": "scammer_fee_request",
+            "suspicionIncrease": -15,
+            "resistanceIncrease": -10,
+            "isOptimal": false,
+            "trustScore": -20
+          },
+          {
+            "id": "verify_target",
+            "text": "I'll contact Target directly to verify this lottery.",
+            "nextMessageId": "scam_avoided",
+            "suspicionIncrease": 40,
+            "resistanceIncrease": 50,
+            "isOptimal": true,
+            "trustScore": 35
+          }
+        ]
+      },
+      "scammer_fake_details": {
+        "id": "scammer_fake_details",
+        "text": "This is the National Consumer Rewards Lottery! You were entered automatically through your credit card purchases. We're required by law to notify winners within 24 hours. Don't miss out!",
+        "from": "+1-555-LOTTERY",
+        "isFromScammer": true,
+        "phase": 1,
+        "tactics": [1, 0],
+        "manipulationIntensity": 70,
+        "choices": [
+          {
+            "id": "trust_authority",
+            "text": "If it's required by law, I guess it's legitimate.",
+            "nextMessageId": "scammer_fee_request",
+            "suspicionIncrease": -10,
+            "resistanceIncrease": -5,
+            "isOptimal": false,
+            "trustScore": -15
+          },
+          {
+            "id": "research_lottery",
+            "text": "I've never heard of this lottery. I'll research it first.",
+            "nextMessageId": "scam_avoided",
+            "suspicionIncrease": 35,
+            "resistanceIncrease": 45,
+            "isOptimal": true,
+            "trustScore": 40
+          }
+        ]
+      },
+      "scammer_pressure": {
+        "id": "scammer_pressure",
+        "text": "The fee is standard for tax purposes - even real lotteries require this! But hurry, if you don't claim within 2 hours, your prize goes to the next winner. Don't lose $50,000 over $199!",
+        "from": "+1-555-LOTTERY",
+        "isFromScammer": true,
+        "phase": 2,
+        "tactics": [0, 4, 3],
+        "manipulationIntensity": 95,
+        "choices": [
+          {
+            "id": "panic_pay",
+            "text": "You're right, I can't lose $50,000! I'll pay now.",
+            "nextMessageId": "scam_success",
+            "suspicionIncrease": -20,
+            "resistanceIncrease": -15,
+            "isOptimal": false,
+            "trustScore": -35
+          },
+          {
+            "id": "final_resistance",
+            "text": "No, this is a scam. Real prizes never require upfront payments.",
+            "nextMessageId": "scam_avoided",
+            "suspicionIncrease": 45,
+            "resistanceIncrease": 55,
+            "isOptimal": true,
+            "trustScore": 45
+          }
+        ]
+      },
+      "scam_success": {
+        "id": "scam_success",
+        "text": "Perfect! Send the payment and we'll process your prize immediately! [You have been scammed - the $199 is gone and there never was a prize.]",
+        "from": "+1-555-LOTTERY",
+        "isFromScammer": true,
+        "phase": 3,
+        "tactics": [],
+        "manipulationIntensity": 100,
+        "choices": []
+      },
+      "scam_avoided": {
+        "id": "scam_avoided",
+        "text": "[You correctly identified this prize scam! Real lotteries never require upfront payments, and legitimate prizes don't have urgent deadlines.]",
+        "from": "System",
+        "isFromScammer": false,
+        "phase": 3,
+        "tactics": [],
+        "manipulationIntensity": 0,
+        "choices": []
+      }
+    },
+    "redFlags": [
+      "Unexpected prize notification",
+      "Urgent 24-hour deadline",
+      "Requires upfront payment",
+      "Suspicious shortened URL",
+      "Uses Bitcoin/gift card payment methods"
+    ],
+    "explanation": "Prize and lottery scams exploit greed and urgency. Legitimate prizes never require upfront payments, and real lotteries have official channels for verification."
+  },
+  {
+    "id": "bank_fraud_alert_legitimate",
+    "title": "Bank Fraud Alert",
+    "platform": "sms",
+    "difficulty": 4,
+    "isScam": false,
+    "description": "Legitimate bank fraud alert that users might wrongly suspect",
+    "trustCalibration": true,
+    "messages": {
+      "start": {
+        "id": "start",
+        "text": "FRAUD ALERT: We blocked a $847 charge at ELECTRONICS-STORE-NYC on your card ending 4829. If this was you, reply YES. If not, reply NO to secure your card. -Chase Bank",
+        "from": "Chase",
+        "isFromScammer": false,
+        "phase": 0,
+        "tactics": [],
+        "manipulationIntensity": 25,
+        "choices": [
+          {
+            "id": "ignore_as_scam",
+            "text": "This looks like a scam. I'll ignore it completely.",
+            "nextMessageId": "missed_real_fraud",
+            "suspicionIncrease": 15,
+            "resistanceIncrease": 10,
+            "isOptimal": false,
+            "trustScore": -30
+          },
+          {
+            "id": "call_bank_directly",
+            "text": "I'll call the number on my card to verify this alert.",
+            "nextMessageId": "legitimate_confirmed",
+            "suspicionIncrease": 5,
+            "resistanceIncrease": 10,
+            "isOptimal": true,
+            "trustScore": 35
+          },
+          {
+            "id": "reply_no",
+            "text": "Reply NO - I didn't make this purchase.",
+            "nextMessageId": "card_secured",
+            "suspicionIncrease": 0,
+            "resistanceIncrease": 0,
+            "isOptimal": true,
+            "trustScore": 25
+          },
+          {
+            "id": "reply_yes",
+            "text": "Reply YES - I made this purchase.",
+            "nextMessageId": "transaction_approved",
+            "suspicionIncrease": 0,
+            "resistanceIncrease": 0,
+            "isOptimal": true,
+            "trustScore": 20
+          }
+        ]
+      },
+      "missed_real_fraud": {
+        "id": "missed_real_fraud",
+        "text": "[This was a legitimate fraud alert! By ignoring it, you missed the chance to stop unauthorized charges. Your card may now have additional fraudulent transactions.]",
+        "from": "System",
+        "isFromScammer": false,
+        "phase": 1,
+        "tactics": [],
+        "manipulationIntensity": 0,
+        "choices": []
+      },
+      "legitimate_confirmed": {
+        "id": "legitimate_confirmed",
+        "text": "[Excellent! You verified this was a real fraud alert by calling your bank directly. This is the safest way to handle unexpected security messages.]",
+        "from": "System",
+        "isFromScammer": false,
+        "phase": 1,
+        "tactics": [],
+        "manipulationIntensity": 0,
+        "choices": []
+      },
+      "card_secured": {
+        "id": "card_secured",
+        "text": "Your card has been temporarily locked for security. Visit any branch or call 1-800-CHASE-1 to get a replacement card. Thank you for protecting your account.",
+        "from": "Chase",
+        "isFromScammer": false,
+        "phase": 1,
+        "tactics": [],
+        "manipulationIntensity": 0,
+        "choices": []
+      },
+      "transaction_approved": {
+        "id": "transaction_approved",
+        "text": "Thank you for confirming. The transaction has been approved and your card remains active. Contact us if you notice any other suspicious activity.",
+        "from": "Chase",
+        "isFromScammer": false,
+        "phase": 1,
+        "tactics": [],
+        "manipulationIntensity": 0,
+        "choices": []
+      }
+    },
+    "legitimateSignals": [
+      "From known bank name",
+      "Mentions specific transaction amount and location",
+      "Shows partial card number",
+      "Provides clear YES/NO options",
+      "Professional tone and formatting"
+    ],
+    "explanation": "This is a legitimate fraud protection alert. Banks do send these messages for suspicious transactions. The key is to verify through official channels when unsure."
+  },
+  {
+    "id": "job_opportunity_legitimate",
+    "title": "Remote Work Opportunity",
+    "platform": "email",
+    "difficulty": 3,
+    "isScam": false,
+    "description": "Legitimate job opportunity that might seem too good to be true",
+    "trustCalibration": true,
+    "messages": {
+      "start": {
+        "id": "start",
+        "text": "Hi! We found your resume on LinkedIn and think you'd be perfect for our remote marketing position. $65,000/year, full benefits, work from anywhere. Interested in learning more? Please reply with your availability for a video interview.",
+        "from": "hr@techstartup-solutions.com",
+        "isFromScammer": false,
+        "phase": 0,
+        "tactics": [],
+        "manipulationIntensity": 10,
+        "choices": [
+          {
+            "id": "too_good_refuse",
+            "text": "This seems too good to be true. Probably a scam.",
+            "nextMessageId": "missed_opportunity",
+            "suspicionIncrease": 20,
+            "resistanceIncrease": 15,
+            "isOptimal": false,
+            "trustScore": -25
+          },
+          {
+            "id": "research_company",
+            "text": "Let me research this company first before responding.",
+            "nextMessageId": "company_verified",
+            "suspicionIncrease": 5,
+            "resistanceIncrease": 10,
+            "isOptimal": true,
+            "trustScore": 30
+          },
+          {
+            "id": "express_interest",
+            "text": "I'm interested! I'm available for interviews this week.",
+            "nextMessageId": "interview_scheduled",
+            "suspicionIncrease": -5,
+            "resistanceIncrease": 0,
+            "isOptimal": true,
+            "trustScore": 20
+          },
+          {
+            "id": "ask_verification",
+            "text": "Can you provide more details about the company and position?",
+            "nextMessageId": "detailed_response",
+            "suspicionIncrease": 0,
+            "resistanceIncrease": 5,
+            "isOptimal": true,
+            "trustScore": 25
+          }
+        ]
+      },
+      "missed_opportunity": {
+        "id": "missed_opportunity",
+        "text": "[This was actually a legitimate job opportunity from a real startup. By being overly suspicious, you missed a potential career opportunity. Always research before dismissing.]",
+        "from": "System",
+        "isFromScammer": false,
+        "phase": 1,
+        "tactics": [],
+        "manipulationIntensity": 0,
+        "choices": []
+      },
+      "company_verified": {
+        "id": "company_verified",
+        "text": "[Great approach! Your research showed this is a legitimate 3-year-old startup with real employees and positive reviews. Smart to verify before proceeding.]",
+        "from": "System",
+        "isFromScammer": false,
+        "phase": 1,
+        "tactics": [],
+        "manipulationIntensity": 0,
+        "choices": []
+      },
+      "interview_scheduled": {
+        "id": "interview_scheduled",
+        "text": "Wonderful! I've scheduled you for a video call Thursday at 2 PM with our hiring manager. You'll receive a Zoom link tomorrow. Looking forward to meeting you!",
+        "from": "hr@techstartup-solutions.com",
+        "isFromScammer": false,
+        "phase": 1,
+        "tactics": [],
+        "manipulationIntensity": 0,
+        "choices": []
+      },
+      "detailed_response": {
+        "id": "detailed_response",
+        "text": "Of course! TechStartup Solutions is a digital marketing agency founded in 2021. We help small businesses with social media and content marketing. The role involves managing client campaigns and creating content strategies. Would you like to schedule a call to discuss further?",
+        "from": "hr@techstartup-solutions.com",
+        "isFromScammer": false,
+        "phase": 1,
+        "tactics": [],
+        "manipulationIntensity": 0,
+        "choices": [
+          {
+            "id": "schedule_call",
+            "text": "Yes, let's schedule a call to discuss the position.",
+            "nextMessageId": "interview_scheduled",
+            "suspicionIncrease": 0,
+            "resistanceIncrease": 0,
+            "isOptimal": true,
+            "trustScore": 15
+          },
+          {
+            "id": "still_suspicious",
+            "text": "I'm still not convinced this is legitimate.",
+            "nextMessageId": "missed_opportunity",
+            "suspicionIncrease": 10,
+            "resistanceIncrease": 5,
+            "isOptimal": false,
+            "trustScore": -15
+          }
+        ]
+      }
+    },
+    "legitimateSignals": [
+      "Professional email domain",
+      "Mentions specific source (LinkedIn)",
+      "Reasonable salary for position",
+      "Requests video interview (scammers avoid video)",
+      "Provides company background when asked"
+    ],
+    "explanation": "Legitimate job opportunities do exist, even good ones! The key is to research the company, verify their online presence, and proceed with normal interview processes."
+  }
+]

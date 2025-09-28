@@ -1,4 +1,4 @@
-package com.example.scamshield
+package com.scamshield.app
 
 import io.flutter.embedding.android.FlutterActivity
 

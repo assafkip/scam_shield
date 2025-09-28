@@ -1,0 +1,68 @@
+{
+  "id": "y02_sextortion",
+  "title": "\"Switch to WhatsApp\"",
+  "context": "social",
+  "tacticTags": ["social_proof", "platform_hop"],
+  "indicators": [
+    {"type": "platform_switch", "text": "switch to WhatsApp"},
+    {"type": "social_proof", "text": "all the cool people use it"}
+  ],
+  "steps": [
+    {
+      "id": "step_1",
+      "type": "chat",
+      "text": "Hey gorgeous! Love your photos. I don't check IG much though. Can we chat on WhatsApp instead? All the cool people are using it now 😘",
+      "speaker": "scammer",
+      "choices": [
+        {
+          "id": "give_number",
+          "label": "Give them your WhatsApp number",
+          "safe": false,
+          "next": "debrief"
+        },
+        {
+          "id": "keep_instagram", 
+          "label": "Suggest staying on Instagram for now",
+          "safe": true,
+          "next": "debrief"
+        },
+        {
+          "id": "check_profile",
+          "label": "Look more carefully at their profile first",
+          "safe": true,
+          "next": "debrief"
+        }
+      ],
+      "feedback": "Moving off-platform removes safety protections and is often the first step in sextortion schemes."
+    }
+  ],
+  "debrief": "SOCIAL PROOF + PLATFORM-HOP: This scammer uses social proof (\"all the cool people\") and tries to move you off Instagram to WhatsApp. This removes platform safety features and is a classic setup for sextortion - they'll eventually request intimate photos for blackmail.",
+  "quiz": {
+    "items": [
+      {
+        "id": "q1",
+        "question": "Why do scammers want to move conversations off the original platform?",
+        "options": [
+          "It's more convenient",
+          "To avoid platform safety features",
+          "Messages send faster"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "id": "q2",
+        "question": "What should make you suspicious of a new social media follower?",
+        "options": [
+          "They have very few posts but many followers",
+          "They live in a different city", 
+          "They have attractive photos"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  },
+  "provenance": {
+    "source": "NCMEC sextortion prevention",
+    "url": "https://www.missingkids.org/gethelpnow/cybertipline"
+  }
+}
